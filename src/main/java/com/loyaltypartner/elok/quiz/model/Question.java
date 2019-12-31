@@ -8,6 +8,8 @@ import javax.persistence.Entity;
 import javax.persistence.Enumerated;
 import javax.persistence.FetchType;
 import javax.persistence.ManyToOne;
+import javax.persistence.NamedQueries;
+import javax.persistence.NamedQuery;
 import javax.persistence.OneToMany;
 
 import lombok.Getter;
@@ -18,6 +20,10 @@ import lombok.Setter;
 @Getter
 @Setter
 @NoArgsConstructor
+@NamedQueries({
+    @NamedQuery(name="Question.findByDomain",
+                query="SELECT q FROM Question q WHERE q.domain.id = :id")
+})
 public class Question extends BaseEntity {
 
     private String title;

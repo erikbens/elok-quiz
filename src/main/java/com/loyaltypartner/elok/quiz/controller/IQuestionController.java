@@ -37,5 +37,15 @@ public interface IQuestionController {
             MediaType.APPLICATION_JSON_VALUE }, method = RequestMethod.GET, headers = {})
     @ApiImplicitParams({ @ApiImplicitParam(name = "Content-Type", value = MediaType.APPLICATION_JSON_VALUE, paramType = "header") })
     ResponseEntity<Question> findById(@ApiParam(value = "questionId", required = true) @PathVariable("questionId") Long questionId);
+    
+    @ApiOperation(value = "Finds all questions for the given domain.", nickname = "findQuestionsByDomain", authorizations = {
+            @Authorization(value = "bearer") }, tags = { "Questions" })
+    @ApiResponses(value = { @ApiResponse(code = 200, message = "Ok"), @ApiResponse(code = 400, message = "Bad request"),
+            @ApiResponse(code = 401, message = "Unauthorized"), @ApiResponse(code = 403, message = "Forbidden"),
+            @ApiResponse(code = 404, message = "Not found") })
+    @RequestMapping(value = "/domain/{domainId}/questions", consumes = { MediaType.APPLICATION_JSON_VALUE }, produces = {
+            MediaType.APPLICATION_JSON_VALUE }, method = RequestMethod.GET, headers = {})
+    @ApiImplicitParams({ @ApiImplicitParam(name = "Content-Type", value = MediaType.APPLICATION_JSON_VALUE, paramType = "header") })
+    ResponseEntity<List<Question>> findByDomain(@ApiParam(value = "domainId", required = true) @PathVariable("domainId") Long domainId);
 
 }

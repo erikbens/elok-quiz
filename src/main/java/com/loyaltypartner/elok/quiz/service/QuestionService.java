@@ -32,6 +32,10 @@ public class QuestionService {
         return optional.get();
     }
 
+    public List<Question> findQuestionsByDomain(Long domainId) {
+        return questionRepository.findByDomain(domainId);
+    }
+
     public Boolean checkAnswers(Question question, List<Long> answers) {
         List<Answer> questionAnswers = question.getAnswers();
         List<Answer> correctAnswers = questionAnswers.stream().filter(a -> a.getCorrect() == true).collect(Collectors.toList());

@@ -31,4 +31,9 @@ public class QuestionController implements IQuestionController {
         }
     }
 
+    @Override
+    public ResponseEntity<List<Question>> findByDomain(Long domainId) {
+        return new ResponseEntity<List<Question>>(questionService.findQuestionsByDomain(domainId), HttpStatus.OK);
+    }
+
 }
