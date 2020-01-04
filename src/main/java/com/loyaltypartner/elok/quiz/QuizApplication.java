@@ -8,6 +8,8 @@ import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.context.annotation.Bean;
 import org.springframework.web.filter.CommonsRequestLoggingFilter;
+import org.springframework.web.servlet.config.annotation.CorsRegistry;
+import org.springframework.web.servlet.config.annotation.WebMvcConfigurer;
 
 import com.loyaltypartner.elok.quiz.model.Answer;
 import com.loyaltypartner.elok.quiz.model.Domain;
@@ -57,7 +59,7 @@ public class QuizApplication {
             question.addAnswer(a2);
             question.addAnswer(a3);
             question.addAnswer(a4);
-            
+
             domain = domainRepository.save(domain);
             question = questionRepository.save(question);
             a1 = answerRepository.save(a1);
@@ -70,6 +72,16 @@ public class QuizApplication {
             answers.add(a2.getId());
             answers.add(a3.getId());
             answers.add(a4.getId());
+        };
+    }
+
+    @Bean
+    public WebMvcConfigurer corsConfigurer() {
+        return new WebMvcConfigurer() {
+            @Override
+            public void addCorsMappings(CorsRegistry registry) {
+                registry.addMapping("/**").allowedMethods("GET", "POST", "PUT", "DELETE", "OPTIONS").allowedOrigins("*").allowedHeaders("*");
+            }
         };
     }
 
