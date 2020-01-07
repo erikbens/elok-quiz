@@ -1,8 +1,5 @@
 package com.loyaltypartner.elok.quiz;
 
-import java.util.ArrayList;
-import java.util.List;
-
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
@@ -11,6 +8,8 @@ import org.springframework.web.filter.CommonsRequestLoggingFilter;
 import org.springframework.web.servlet.config.annotation.CorsRegistry;
 import org.springframework.web.servlet.config.annotation.WebMvcConfigurer;
 
+import com.fasterxml.jackson.databind.Module;
+import com.fasterxml.jackson.datatype.hibernate5.Hibernate5Module;
 import com.loyaltypartner.elok.quiz.model.Answer;
 import com.loyaltypartner.elok.quiz.model.Domain;
 import com.loyaltypartner.elok.quiz.model.Question;
@@ -67,11 +66,21 @@ public class QuizApplication {
             a3 = answerRepository.save(a3);
             a4 = answerRepository.save(a4);
 
-            List<Long> answers = new ArrayList<Long>();
-            answers.add(a1.getId());
-            answers.add(a2.getId());
-            answers.add(a3.getId());
-            answers.add(a4.getId());
+            Question question1 = DummyGenerator.generateQuestion(domain);
+            domain.addQuestion(question1);
+            
+            Answer a5 = DummyGenerator.generateAnswer(question);
+            Answer a6 = DummyGenerator.generateAnswer(question);
+            Answer a7 = DummyGenerator.generateAnswer(question);
+            question1.addAnswer(a5);
+            question1.addAnswer(a6);
+            question1.addAnswer(a7);
+            
+            domain = domainRepository.save(domain);
+            question = questionRepository.save(question1);
+            answerRepository.save(a5);
+            answerRepository.save(a6);
+            answerRepository.save(a7);
         };
     }
 
@@ -83,6 +92,11 @@ public class QuizApplication {
                 registry.addMapping("/**").allowedMethods("GET", "POST", "PUT", "DELETE", "OPTIONS").allowedOrigins("*").allowedHeaders("*");
             }
         };
+    }
+    
+    @Bean
+    protected Module module() {
+        return new Hibernate5Module();
     }
 
 }

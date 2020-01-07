@@ -20,7 +20,7 @@ public class Domain extends BaseEntity {
 
     private String name;
 
-    @OneToMany(mappedBy = "domain", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
+    @OneToMany(mappedBy = "domain", cascade = { CascadeType.PERSIST, CascadeType.REMOVE }, fetch = FetchType.EAGER)
     private List<Question> questions;
 
     public Domain(String name) {

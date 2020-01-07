@@ -12,6 +12,9 @@ import javax.persistence.NamedQueries;
 import javax.persistence.NamedQuery;
 import javax.persistence.OneToMany;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
@@ -20,9 +23,10 @@ import lombok.Setter;
 @Getter
 @Setter
 @NoArgsConstructor
-@NamedQueries({
-    @NamedQuery(name="Question.findByDomain",
-                query="SELECT q FROM Question q WHERE q.domain.id = :id")
+@NamedQueries({ 
+    @NamedQuery(name = "Question.findByDomain", query = "SELECT q FROM Question q WHERE q.domain.id = :id"),
+    @NamedQuery(name = "Question.findByTitleOrText", query = "SELECT q FROM Question q WHERE lower(q.title) LIKE lower(concat('%', :query, '%')) OR lower(q.text) LIKE lower(concat('%', :query, '%'))"),
+    @NamedQuery(name = "Question.findByIdFetchDomain", query = "SELECT q FROM Question q JOIN FETCH q.domain WHERE q.id = :questionId")
 })
 public class Question extends BaseEntity {
 
@@ -32,12 +36,14 @@ public class Question extends BaseEntity {
     private String createdBy;
 
     @Enumerated
-    private Difficulty diffculty;
+    private Difficulty difficulty;
 
-    @ManyToOne(fetch = FetchType.LAZY)
+    @JsonIgnoreProperties("questions")
+    @ManyToOne(fetch = FetchType.EAGER)
     private Domain domain;
 
-    @OneToMany(mappedBy = "question", cascade = CascadeType.ALL, fetch = FetchType.EAGER)
+    @JsonIgnore
+    @OneToMany(mappedBy = "question", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
     private List<Answer> answers;
 
     public Question(String title, String text, String image, String createdBy, Difficulty diffculty, Domain domain) {
@@ -46,7 +52,7 @@ public class Question extends BaseEntity {
         this.text = text;
         this.image = image;
         this.createdBy = createdBy;
-        this.diffculty = diffculty;
+        this.difficulty = diffculty;
         this.domain = domain;
     }
 

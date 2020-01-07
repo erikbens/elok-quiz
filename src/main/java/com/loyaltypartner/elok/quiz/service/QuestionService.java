@@ -31,9 +31,41 @@ public class QuestionService {
 
         return optional.get();
     }
+    
+    public Question findByIdFetchDomain(Long questionId) throws QuestionNotFoundException {
+        Optional<Question> optional = questionRepository.findByIdFetchDomain(questionId);
+        if (!optional.isPresent()) {
+            throw new QuestionNotFoundException();
+        }
+
+        return optional.get();
+    }
 
     public List<Question> findQuestionsByDomain(Long domainId) {
         return questionRepository.findByDomain(domainId);
+    }
+    
+    public List<Question> findQuestionsByTitleOrText(String query) {
+        return questionRepository.findByTitleOrText(query);
+    }
+    
+    public Question createQuestion(Question question) {
+        if (question.getId() != null) {
+            question.setId(null);
+        }
+        return questionRepository.save(question);
+    }
+    
+    public Question updateQuestion(Long questionId, Question entity) throws QuestionNotFoundException {
+        Question question = findById(questionId);
+        
+        question.setDifficulty(entity.getDifficulty());
+        question.setDomain(entity.getDomain());
+        question.setImage(entity.getImage());
+        question.setText(entity.getText());
+        question.setTitle(entity.getTitle());
+        
+        return questionRepository.save(question);
     }
 
     public Boolean checkAnswers(Question question, List<Long> answers) {
@@ -49,6 +81,10 @@ public class QuestionService {
             }
         }
         return Boolean.FALSE;
+    }
+
+    public void deleteQuestion(Long questionId) throws QuestionNotFoundException {
+        questionRepository.delete(findById(questionId));
     }
 
 }

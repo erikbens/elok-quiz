@@ -31,4 +31,18 @@ public class DomainController implements IDomainController {
         }
     }
 
+    @Override
+    public ResponseEntity<Domain> createDomain(Domain domain) {
+        return new ResponseEntity<Domain>(domainService.create(domain), HttpStatus.OK);
+    }
+
+    @Override
+    public ResponseEntity<Domain> updateDomain(Long domainId, Domain domain) {
+        try {
+            return new ResponseEntity<Domain>(domainService.update(domainId, domain), HttpStatus.OK);
+        } catch (DomainNotFoundException e) {
+            return new ResponseEntity<Domain>(HttpStatus.NOT_FOUND);
+        }
+    }
+
 }

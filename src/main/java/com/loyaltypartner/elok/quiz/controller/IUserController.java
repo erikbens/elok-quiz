@@ -48,7 +48,7 @@ public interface IUserController {
     @ApiImplicitParams({ @ApiImplicitParam(name = "Content-Type", value = MediaType.APPLICATION_JSON_VALUE, paramType = "header") })
     ResponseEntity<User> createUser(@ApiParam(value = "user", required = true) @RequestBody(required = true) User user);
 
-    @ApiOperation(value = "Creates a new user with the given data.", nickname = "createUser", authorizations = { @Authorization(value = "bearer") }, tags = {
+    @ApiOperation(value = "Updates an existing user with the given data.", nickname = "updateUser", authorizations = { @Authorization(value = "bearer") }, tags = {
             "Users" })
     @ApiResponses(value = { @ApiResponse(code = 201, message = "Created"), @ApiResponse(code = 400, message = "Bad request"),
             @ApiResponse(code = 401, message = "Unauthorized"), @ApiResponse(code = 403, message = "Forbidden") })

@@ -4,6 +4,8 @@ import javax.persistence.Entity;
 import javax.persistence.FetchType;
 import javax.persistence.ManyToOne;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
@@ -17,6 +19,7 @@ public class Answer extends BaseEntity implements Comparable<Answer> {
     private String text;
     private Boolean correct;
     
+    @JsonIgnore
     @ManyToOne(fetch = FetchType.LAZY)
     private Question question;
 

@@ -23,17 +23,50 @@ public class QuestionController implements IQuestionController {
     }
 
     @Override
-    public ResponseEntity<Question> findById(Long questionId) {
+    public ResponseEntity<Question> findById(Long questionId, Boolean withDomain) {
         try {
-            return new ResponseEntity<Question>(questionService.findById(questionId), HttpStatus.OK);
+            if (withDomain != null && withDomain) {
+                return new ResponseEntity<Question>(questionService.findByIdFetchDomain(questionId), HttpStatus.OK);
+            } else {
+                return new ResponseEntity<Question>(questionService.findById(questionId), HttpStatus.OK);
+            }
         } catch (QuestionNotFoundException e) {
             return new ResponseEntity<Question>(HttpStatus.NOT_FOUND);
         }
     }
 
     @Override
-    public ResponseEntity<List<Question>> findByDomain(Long domainId) {
+    public ResponseEntity<List<Question>> findByDomainId(Long domainId) {
         return new ResponseEntity<List<Question>>(questionService.findQuestionsByDomain(domainId), HttpStatus.OK);
+    }
+
+    @Override
+    public ResponseEntity<List<Question>> findByTitleOrText(String query) {
+        return new ResponseEntity<List<Question>>(questionService.findQuestionsByTitleOrText(query), HttpStatus.OK);
+    }
+
+    @Override
+    public ResponseEntity<Question> createQuestion(Question question) {
+        return new ResponseEntity<Question>(questionService.createQuestion(question), HttpStatus.CREATED);
+    }
+
+    @Override
+    public ResponseEntity<Question> updateQuestion(Long questionId, Question question) {
+        try {
+            return new ResponseEntity<Question>(questionService.updateQuestion(questionId, question), HttpStatus.OK);
+        } catch (QuestionNotFoundException e) {
+            return new ResponseEntity<Question>(HttpStatus.NOT_FOUND);
+        }
+    }
+
+    @Override
+    public ResponseEntity<Void> deleteQuestion(Long questionId) {
+        try {
+            questionService.deleteQuestion(questionId);
+            return new ResponseEntity<Void>(HttpStatus.OK);
+        } catch (QuestionNotFoundException e) {
+            return new ResponseEntity<Void>(HttpStatus.NOT_FOUND);
+        }
     }
 
 }
