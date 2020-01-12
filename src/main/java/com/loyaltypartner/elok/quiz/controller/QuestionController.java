@@ -7,6 +7,7 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.RestController;
 
+import com.loyaltypartner.elok.quiz.controller.exception.DomainNotFoundException;
 import com.loyaltypartner.elok.quiz.controller.exception.QuestionNotFoundException;
 import com.loyaltypartner.elok.quiz.model.Question;
 import com.loyaltypartner.elok.quiz.service.QuestionService;
@@ -53,8 +54,14 @@ public class QuestionController implements IQuestionController {
     @Override
     public ResponseEntity<Question> updateQuestion(Long questionId, Question question) {
         try {
+            if (question.getDomain() == null) {
+                return new ResponseEntity<Question>(HttpStatus.BAD_REQUEST);
+            }
             return new ResponseEntity<Question>(questionService.updateQuestion(questionId, question), HttpStatus.OK);
         } catch (QuestionNotFoundException e) {
+            return new ResponseEntity<Question>(HttpStatus.NOT_FOUND);
+        } catch (DomainNotFoundException e) {
+            //TODO Correct error message
             return new ResponseEntity<Question>(HttpStatus.NOT_FOUND);
         }
     }

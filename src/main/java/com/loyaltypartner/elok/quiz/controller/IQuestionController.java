@@ -65,7 +65,7 @@ public interface IQuestionController {
             @Authorization(value = "bearer") }, tags = { "Questions" })
     @ApiResponses(value = { @ApiResponse(code = 201, message = "Created"), @ApiResponse(code = 400, message = "Bad request"),
             @ApiResponse(code = 401, message = "Unauthorized"), @ApiResponse(code = 403, message = "Forbidden") })
-    @RequestMapping(value = "/questions/", consumes = { MediaType.APPLICATION_JSON_VALUE }, produces = {
+    @RequestMapping(value = "/questions", consumes = { MediaType.APPLICATION_JSON_VALUE }, produces = {
             MediaType.APPLICATION_JSON_VALUE }, method = RequestMethod.POST, headers = {})
     @ApiImplicitParams({ @ApiImplicitParam(name = "Content-Type", value = MediaType.APPLICATION_JSON_VALUE, paramType = "header") })
     ResponseEntity<Question> createQuestion(@ApiParam(value = "question", required = true) @RequestBody Question question);

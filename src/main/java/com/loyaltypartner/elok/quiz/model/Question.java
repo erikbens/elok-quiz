@@ -23,11 +23,10 @@ import lombok.Setter;
 @Getter
 @Setter
 @NoArgsConstructor
-@NamedQueries({ 
-    @NamedQuery(name = "Question.findByDomain", query = "SELECT q FROM Question q WHERE q.domain.id = :id"),
-    @NamedQuery(name = "Question.findByTitleOrText", query = "SELECT q FROM Question q WHERE lower(q.title) LIKE lower(concat('%', :query, '%')) OR lower(q.text) LIKE lower(concat('%', :query, '%'))"),
-    @NamedQuery(name = "Question.findByIdFetchDomain", query = "SELECT q FROM Question q JOIN FETCH q.domain WHERE q.id = :questionId")
-})
+@NamedQueries({ @NamedQuery(name = "Question.findByDomain", query = "SELECT q FROM Question q WHERE q.domain.id = :id"),
+        @NamedQuery(name = "Question.findByTitleOrText", query = "SELECT q FROM Question q WHERE lower(q.title) LIKE lower(concat('%', :query, '%')) OR lower(q.text) LIKE lower(concat('%', :query, '%'))"),
+        @NamedQuery(name = "Question.findByIdFetchDomain", query = "SELECT q FROM Question q JOIN FETCH q.domain WHERE q.id = :questionId"),
+        @NamedQuery(name = "Question.findByIdFetchQuestions", query = "SELECT q FROM Question q JOIN FETCH q.answers WHERE q.id = :questionId")})
 public class Question extends BaseEntity {
 
     private String title;
@@ -43,7 +42,7 @@ public class Question extends BaseEntity {
     private Domain domain;
 
     @JsonIgnore
-    @OneToMany(mappedBy = "question", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
+    @OneToMany(mappedBy = "question", cascade = { CascadeType.ALL, CascadeType.REMOVE }, fetch = FetchType.LAZY)
     private List<Answer> answers;
 
     public Question(String title, String text, String image, String createdBy, Difficulty diffculty, Domain domain) {

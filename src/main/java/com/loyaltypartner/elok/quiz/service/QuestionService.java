@@ -8,9 +8,12 @@ import java.util.stream.Collectors;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import com.loyaltypartner.elok.quiz.controller.exception.DomainNotFoundException;
 import com.loyaltypartner.elok.quiz.controller.exception.QuestionNotFoundException;
 import com.loyaltypartner.elok.quiz.model.Answer;
+import com.loyaltypartner.elok.quiz.model.Domain;
 import com.loyaltypartner.elok.quiz.model.Question;
+import com.loyaltypartner.elok.quiz.repository.DomainRepository;
 import com.loyaltypartner.elok.quiz.repository.QuestionRepository;
 
 @Service
@@ -18,6 +21,9 @@ public class QuestionService {
 
     @Autowired
     private QuestionRepository questionRepository;
+    
+    @Autowired
+    private DomainRepository domainRepository;
 
     public List<Question> findAll() {
         return questionRepository.findAll();
@@ -53,17 +59,25 @@ public class QuestionService {
         if (question.getId() != null) {
             question.setId(null);
         }
+        if (question.getDomain() != null && question.getDomain().getId() == null) {
+            question.setDomain(null);
+        }
         return questionRepository.save(question);
     }
     
-    public Question updateQuestion(Long questionId, Question entity) throws QuestionNotFoundException {
+    public Question updateQuestion(Long questionId, Question model) throws QuestionNotFoundException, DomainNotFoundException {
         Question question = findById(questionId);
+        Domain domain = domainRepository.findById(model.getDomain().getId()).get();
         
-        question.setDifficulty(entity.getDifficulty());
-        question.setDomain(entity.getDomain());
-        question.setImage(entity.getImage());
-        question.setText(entity.getText());
-        question.setTitle(entity.getTitle());
+        if (domain == null) {
+            throw new DomainNotFoundException();
+        }
+        
+        question.setDifficulty(model.getDifficulty());
+        question.setDomain(domain);
+        question.setImage(model.getImage());
+        question.setText(model.getText());
+        question.setTitle(model.getTitle());
         
         return questionRepository.save(question);
     }

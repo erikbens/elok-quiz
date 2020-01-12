@@ -59,25 +59,22 @@ public class QuizApplication {
             question.addAnswer(a3);
             question.addAnswer(a4);
 
-            domain = domainRepository.save(domain);
-            question = questionRepository.save(question);
-            a1 = answerRepository.save(a1);
-            a2 = answerRepository.save(a2);
-            a3 = answerRepository.save(a3);
-            a4 = answerRepository.save(a4);
 
             Question question1 = DummyGenerator.generateQuestion(domain);
             domain.addQuestion(question1);
             
-            Answer a5 = DummyGenerator.generateAnswer(question);
-            Answer a6 = DummyGenerator.generateAnswer(question);
-            Answer a7 = DummyGenerator.generateAnswer(question);
+            Answer a5 = DummyGenerator.generateAnswer(question1);
+            Answer a6 = DummyGenerator.generateAnswer(question1);
+            Answer a7 = DummyGenerator.generateAnswer(question1);
             question1.addAnswer(a5);
             question1.addAnswer(a6);
             question1.addAnswer(a7);
             
             domain = domainRepository.save(domain);
-            question = questionRepository.save(question1);
+            a1 = answerRepository.save(a1);
+            a2 = answerRepository.save(a2);
+            a3 = answerRepository.save(a3);
+            a4 = answerRepository.save(a4);
             answerRepository.save(a5);
             answerRepository.save(a6);
             answerRepository.save(a7);

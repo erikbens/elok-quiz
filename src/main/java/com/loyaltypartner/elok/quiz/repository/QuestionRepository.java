@@ -16,5 +16,7 @@ public interface QuestionRepository extends JpaRepository<Question, Long> {
     public List<Question> findByTitleOrText(String query);
     
     public Optional<Question> findByIdFetchDomain(Long questionId);
+    
+    public Optional<Question> findByIdFetchQuestions(Long questionId);
 
 }
