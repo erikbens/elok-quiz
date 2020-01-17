@@ -11,6 +11,7 @@ import org.springframework.stereotype.Service;
 import com.loyaltypartner.elok.quiz.controller.exception.DomainNotFoundException;
 import com.loyaltypartner.elok.quiz.controller.exception.QuestionNotFoundException;
 import com.loyaltypartner.elok.quiz.model.Answer;
+import com.loyaltypartner.elok.quiz.model.Difficulty;
 import com.loyaltypartner.elok.quiz.model.Domain;
 import com.loyaltypartner.elok.quiz.model.Question;
 import com.loyaltypartner.elok.quiz.repository.DomainRepository;
@@ -100,5 +101,10 @@ public class QuestionService {
     public void deleteQuestion(Long questionId) throws QuestionNotFoundException {
         questionRepository.delete(findById(questionId));
     }
+    
+    public List<Question> findQuestionsByDomainIdAndDifficulty(Long domainId, Difficulty difficulty) {
+        System.out.println("domainId=" + domainId + " :: difficulty=" + difficulty);
+        return questionRepository.findQuestionsForDomainIdAndDifficulty(domainId, difficulty); 
+     }
 
 }

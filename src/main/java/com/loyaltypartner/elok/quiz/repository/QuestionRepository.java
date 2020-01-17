@@ -9,7 +9,7 @@ import org.springframework.stereotype.Repository;
 import com.loyaltypartner.elok.quiz.model.Question;
 
 @Repository
-public interface QuestionRepository extends JpaRepository<Question, Long> {
+public interface QuestionRepository extends JpaRepository<Question, Long>, QuestionRepositoryCustom {
     
     public List<Question> findByDomain(Long domainId);
     
@@ -18,5 +18,5 @@ public interface QuestionRepository extends JpaRepository<Question, Long> {
     public Optional<Question> findByIdFetchDomain(Long questionId);
     
     public Optional<Question> findByIdFetchQuestions(Long questionId);
-
+    
 }

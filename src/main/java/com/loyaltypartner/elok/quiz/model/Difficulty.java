@@ -10,7 +10,7 @@ public enum Difficulty {
         this.name = name;
     }
     
-    public String getDifficulty() {
+    public String getName() {
         return name;
     }
     
