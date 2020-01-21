@@ -9,7 +9,6 @@ import org.springframework.web.bind.annotation.RestController;
 
 import com.loyaltypartner.elok.quiz.controller.exception.DomainNotFoundException;
 import com.loyaltypartner.elok.quiz.controller.exception.QuestionNotFoundException;
-import com.loyaltypartner.elok.quiz.model.Difficulty;
 import com.loyaltypartner.elok.quiz.model.Question;
 import com.loyaltypartner.elok.quiz.service.QuestionService;
 
@@ -78,12 +77,12 @@ public class QuestionController implements IQuestionController {
     }
 
     @Override
-    public ResponseEntity<List<Question>> getQuestionsByFilter(Long domainId, String difficulty) {
-        Difficulty diff = null;
-        if (difficulty != null) {
-             diff = Difficulty.valueOf(difficulty);
+    public ResponseEntity<Boolean> checkAnswersForQuestionId(Long questionId, List<Long> answerIds) {
+        try {
+            return new ResponseEntity<Boolean>(questionService.checkAnswers(questionId, answerIds), HttpStatus.OK);
+        } catch (QuestionNotFoundException e) {
+            return new ResponseEntity<Boolean>(HttpStatus.NOT_FOUND);
         }
-        return new ResponseEntity<List<Question>>(questionService.findQuestionsByDomainIdAndDifficulty(domainId, diff), HttpStatus.OK);
     }
 
 }

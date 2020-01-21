@@ -33,7 +33,8 @@ public class QuestionRepositoryImpl implements QuestionRepositoryCustom {
             q.where(cb.equal(question.get("difficulty"), difficulty));
         }
         
-        return entityManager.createQuery(q).getResultList();
+        question.fetch("answers");
+        return entityManager.createQuery(q.distinct(true)).getResultList();
     }
 
 }

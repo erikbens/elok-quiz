@@ -9,6 +9,7 @@ import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 
+import com.loyaltypartner.elok.quiz.controller.exception.QuestionNotFoundException;
 import com.loyaltypartner.elok.quiz.model.Answer;
 import com.loyaltypartner.elok.quiz.model.Question;
 import com.loyaltypartner.elok.quiz.service.QuestionService;
@@ -51,7 +52,11 @@ public class QuestionServiceTest {
         answers.add(a3.getId());
         answers.add(a4.getId());
         
-        assertFalse(questionService.checkAnswers(question, answers));
+        try {
+            assertFalse(questionService.checkAnswers(question.getId(), answers));
+        } catch (QuestionNotFoundException e) {
+            e.printStackTrace();
+        }
     }
     
     @Test
@@ -84,7 +89,11 @@ public class QuestionServiceTest {
         answers.add(a1.getId());
         answers.add(a4.getId());
         
-        assertFalse(questionService.checkAnswers(question, answers));
+        try {
+            assertFalse(questionService.checkAnswers(question.getId(), answers));
+        } catch (QuestionNotFoundException e) {
+            e.printStackTrace();
+        }
     }
     
     @Test
@@ -117,7 +126,11 @@ public class QuestionServiceTest {
         answers.add(a2.getId());
         answers.add(a4.getId());
         
-        assertTrue(questionService.checkAnswers(question, answers));
+        try {
+            assertTrue(questionService.checkAnswers(question.getId(), answers));
+        } catch (QuestionNotFoundException e) {
+            e.printStackTrace();
+        }
     }
 
 }

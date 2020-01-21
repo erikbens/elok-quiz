@@ -12,7 +12,6 @@ import javax.persistence.NamedQueries;
 import javax.persistence.NamedQuery;
 import javax.persistence.OneToMany;
 
-import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 
 import lombok.Getter;
@@ -41,7 +40,6 @@ public class Question extends BaseEntity {
     @ManyToOne(fetch = FetchType.EAGER)
     private Domain domain;
 
-    @JsonIgnore
     @OneToMany(mappedBy = "question", cascade = { CascadeType.ALL, CascadeType.REMOVE }, fetch = FetchType.LAZY)
     private List<Answer> answers;
 

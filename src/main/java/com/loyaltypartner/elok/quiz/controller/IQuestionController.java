@@ -91,13 +91,15 @@ public interface IQuestionController {
     @ApiImplicitParams({ @ApiImplicitParam(name = "Content-Type", value = MediaType.APPLICATION_JSON_VALUE, paramType = "header") })
     ResponseEntity<Void> deleteQuestion(@ApiParam(value = "questionId", required = true) @PathVariable Long questionId);
 
-    @ApiOperation(value = "Gets all questions for the given filter.", nickname = "findQuestionsByFilter", authorizations = {
+    @ApiOperation(value = "Checks the answers for the given questionId.", nickname = "checkAnswersForQuestionId", authorizations = {
             @Authorization(value = "bearer") }, tags = { "Questions" })
     @ApiResponses(value = { @ApiResponse(code = 200, message = "Ok"), @ApiResponse(code = 400, message = "Bad request"),
-            @ApiResponse(code = 401, message = "Unauthorized"), @ApiResponse(code = 403, message = "Forbidden") })
-    @RequestMapping(value = "/questions/filter", consumes = { MediaType.APPLICATION_JSON_VALUE }, produces = {
-            MediaType.APPLICATION_JSON_VALUE }, method = RequestMethod.GET, headers = {})
+            @ApiResponse(code = 401, message = "Unauthorized"), @ApiResponse(code = 403, message = "Forbidden"),
+            @ApiResponse(code = 404, message = "Not found") })
+    @RequestMapping(value = "/questions/{questionId}/check", consumes = { MediaType.APPLICATION_JSON_VALUE }, produces = {
+            MediaType.APPLICATION_JSON_VALUE }, method = RequestMethod.POST, headers = {})
     @ApiImplicitParams({ @ApiImplicitParam(name = "Content-Type", value = MediaType.APPLICATION_JSON_VALUE, paramType = "header") })
-    public ResponseEntity<List<Question>> getQuestionsByFilter(@ApiParam(value = "domainId", required = false) @RequestParam(required = false) Long domainId,
-            @ApiParam(value = "difficulty", required = false) @RequestParam(required = false) String difficulty);
+    public ResponseEntity<Boolean> checkAnswersForQuestionId(@ApiParam(value = "questionId", required = true) @PathVariable Long questionId,
+            @ApiParam(value = "answerIds", required = true) @RequestBody List<Long> answerIds);
+
 }
