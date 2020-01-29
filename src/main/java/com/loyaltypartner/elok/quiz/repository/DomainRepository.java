@@ -7,5 +7,7 @@ import com.loyaltypartner.elok.quiz.model.Domain;
 
 @Repository
 public interface DomainRepository extends JpaRepository<Domain, Long> {
+    
+    Domain findByName(String name);
 
 }

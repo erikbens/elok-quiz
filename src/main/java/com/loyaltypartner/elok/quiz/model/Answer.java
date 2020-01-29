@@ -1,5 +1,6 @@
 package com.loyaltypartner.elok.quiz.model;
 
+import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
 import javax.persistence.ManyToOne;
@@ -16,6 +17,7 @@ import lombok.Setter;
 @NoArgsConstructor
 public class Answer extends BaseEntity implements Comparable<Answer> {
     
+    @Column(length = 500)
     private String text;
     private Boolean correct;
     

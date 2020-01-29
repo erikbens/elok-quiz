@@ -1,0 +1,31 @@
+<?xml version="1.0"?>
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema">
+	<xs:element name="list">
+		<xs:complexType>
+			<xs:sequence>
+				<xs:element name="question" type="question" maxOccurs="unbounded" />
+			</xs:sequence>
+		</xs:complexType>
+	</xs:element>
+	
+	<xs:complexType name="question">
+		<xs:sequence>
+			<xs:element name="answer" type="answer" minOccurs="1" maxOccurs="unbounded" />
+		</xs:sequence>
+		<xs:attribute name="text" type="xs:string" />
+		<xs:attribute name="img" type="xs:string" />
+		<xs:attribute name="level" type="difficulty" />
+		<xs:attribute name="area" type="xs:string" />
+	</xs:complexType>
+	<xs:complexType name="answer">
+		<xs:attribute name="solution" type="xs:boolean" />
+		<xs:attribute name="text" type="xs:string" />
+	</xs:complexType>
+	<xs:simpleType name="difficulty" final="restriction">
+		<xs:restriction base="xs:string">
+			<xs:enumeration value="A" />
+			<xs:enumeration value="B" />
+			<xs:enumeration value="C" />
+		</xs:restriction>
+	</xs:simpleType>
+</xs:schema>

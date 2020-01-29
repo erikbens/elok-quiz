@@ -28,7 +28,8 @@ public interface IQuestionController {
     @ApiResponses(value = { @ApiResponse(code = 200, message = "Ok"), @ApiResponse(code = 400, message = "Bad request"),
             @ApiResponse(code = 401, message = "Unauthorized"), @ApiResponse(code = 403, message = "Forbidden") })
     @RequestMapping(value = "/questions", produces = { MediaType.APPLICATION_JSON_VALUE }, method = RequestMethod.GET)
-    ResponseEntity<List<Question>> findAll();
+    ResponseEntity<List<Question>> findAll(@ApiParam(value = "pagesize", required = false) @RequestParam(name = "pagesize", required = false) Integer pageSize,
+            @ApiParam(value = "pagenumber", required = false) @RequestParam(name = "pagenumber", required = false) Integer pageNumber);
 
     @ApiOperation(value = "Finds a specific question by the primary id.", nickname = "findQuestionById", authorizations = {
             @Authorization(value = "bearer") }, tags = { "Questions" })
@@ -49,7 +50,9 @@ public interface IQuestionController {
     @RequestMapping(value = "/domain/{domainId}/questions", consumes = { MediaType.APPLICATION_JSON_VALUE }, produces = {
             MediaType.APPLICATION_JSON_VALUE }, method = RequestMethod.GET, headers = {})
     @ApiImplicitParams({ @ApiImplicitParam(name = "Content-Type", value = MediaType.APPLICATION_JSON_VALUE, paramType = "header") })
-    ResponseEntity<List<Question>> findByDomainId(@ApiParam(value = "domainId", required = true) @PathVariable("domainId") Long domainId);
+    ResponseEntity<List<Question>> findByDomainId(@ApiParam(value = "domainId", required = true) @PathVariable("domainId") Long domainId,
+            @ApiParam(value = "pagesize", required = false) @RequestParam(name = "pagesize", required = false) Integer pageSize,
+            @ApiParam(value = "pagenumber", required = false) @RequestParam(name = "pagenumber", required = false) Integer pageNumber);
 
     @ApiOperation(value = "Finds all questions by title or text for the given query.", nickname = "findQuestionsByTitleTextQuery", authorizations = {
             @Authorization(value = "bearer") }, tags = { "Questions" })

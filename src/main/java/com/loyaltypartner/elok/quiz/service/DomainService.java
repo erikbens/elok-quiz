@@ -28,18 +28,22 @@ public class DomainService {
 
         return optional.get();
     }
-    
+
     public Domain create(Domain domain) {
         return domainRepository.save(domain);
     }
-    
+
     public Domain update(Long domainId, Domain entity) throws DomainNotFoundException {
         Domain domain = findById(domainId);
-        
+
         domain.setName(entity.getName());
         domain.setQuestions(entity.getQuestions());
-        
+
         return domainRepository.save(domain);
     }
-    
+
+    public Domain findByName(String name) {
+        return domainRepository.findByName(name);
+    }
+
 }

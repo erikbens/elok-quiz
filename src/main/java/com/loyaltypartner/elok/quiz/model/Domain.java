@@ -6,6 +6,8 @@ import java.util.List;
 import javax.persistence.CascadeType;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
+import javax.persistence.NamedQueries;
+import javax.persistence.NamedQuery;
 import javax.persistence.OneToMany;
 
 import lombok.Getter;
@@ -16,6 +18,9 @@ import lombok.Setter;
 @Getter
 @Setter
 @NoArgsConstructor
+@NamedQueries({ 
+    @NamedQuery(name = "Domain.findByName", query = "SELECT d FROM Domain d WHERE d.name = :name") 
+})
 public class Domain extends BaseEntity {
 
     private String name;

@@ -3,6 +3,8 @@ package com.loyaltypartner.elok.quiz.controller;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.PageRequest;
+import org.springframework.data.domain.Pageable;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.RestController;
@@ -19,8 +21,12 @@ public class QuestionController implements IQuestionController {
     private QuestionService questionService;
 
     @Override
-    public ResponseEntity<List<Question>> findAll() {
-        return new ResponseEntity<List<Question>>(questionService.findAll(), HttpStatus.OK);
+    public ResponseEntity<List<Question>> findAll(Integer pageSize, Integer pageNumber) {
+        Pageable pageable = null;
+        if (pageSize != null || pageNumber != null) {
+            pageable = PageRequest.of(pageNumber, pageSize);
+        }
+        return new ResponseEntity<List<Question>>(questionService.findAll(pageable), HttpStatus.OK);
     }
 
     @Override
@@ -37,8 +43,12 @@ public class QuestionController implements IQuestionController {
     }
 
     @Override
-    public ResponseEntity<List<Question>> findByDomainId(Long domainId) {
-        return new ResponseEntity<List<Question>>(questionService.findQuestionsByDomain(domainId), HttpStatus.OK);
+    public ResponseEntity<List<Question>> findByDomainId(Long domainId, Integer pageSize, Integer pageNumber) {
+        Pageable pageable = null;
+        if (pageSize != null || pageNumber != null) {
+            pageable = PageRequest.of(pageNumber, pageSize);
+        }
+        return new ResponseEntity<List<Question>>(questionService.findQuestionsByDomain(domainId, pageable), HttpStatus.OK);
     }
 
     @Override

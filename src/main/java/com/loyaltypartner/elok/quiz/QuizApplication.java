@@ -1,5 +1,7 @@
 package com.loyaltypartner.elok.quiz;
 
+import org.modelmapper.ModelMapper;
+import org.modelmapper.convention.MatchingStrategies;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
@@ -10,6 +12,8 @@ import org.springframework.web.servlet.config.annotation.WebMvcConfigurer;
 
 import com.fasterxml.jackson.databind.Module;
 import com.fasterxml.jackson.datatype.hibernate5.Hibernate5Module;
+import com.loyaltypartner.elok.quiz.imports.XmlQuestionImporter;
+import com.loyaltypartner.elok.quiz.imports.converter.XmlToModelConverter;
 import com.loyaltypartner.elok.quiz.model.Answer;
 import com.loyaltypartner.elok.quiz.model.Domain;
 import com.loyaltypartner.elok.quiz.model.Question;
@@ -17,7 +21,10 @@ import com.loyaltypartner.elok.quiz.repository.AnswerRepository;
 import com.loyaltypartner.elok.quiz.repository.DomainRepository;
 import com.loyaltypartner.elok.quiz.repository.QuestionRepository;
 import com.loyaltypartner.elok.quiz.repository.UserRepository;
+import com.loyaltypartner.elok.quiz.service.AnswerService;
+import com.loyaltypartner.elok.quiz.service.DomainService;
 import com.loyaltypartner.elok.quiz.service.QuestionService;
+import com.loyaltypartner.elok.quiz.xml.List;
 
 import springfox.documentation.swagger2.annotations.EnableSwagger2;
 
@@ -38,6 +45,34 @@ public class QuizApplication {
         filter.setIncludeHeaders(true);
         filter.setAfterMessagePrefix("REQUEST HANDLED: ");
         return filter;
+    }
+    
+    @Bean
+    public CommandLineRunner importFromXml(DomainService domainService, QuestionService questionService, AnswerService answerService) {
+        return args -> {
+            List list = XmlQuestionImporter.readXml("C:/Users/mysel/Downloads/question_pool_all.xml");
+            if (list != null) {
+                for (com.loyaltypartner.elok.quiz.xml.Question question : list.getQuestion()) {
+                    String area = question.getArea();
+                    Domain domain = domainService.findByName(area);
+                    if (domain == null) {
+                        domain = new Domain();
+                        domain.setName(area);
+                        domain = domainService.create(domain);
+                    }
+                    
+                    Question modelQuestion = XmlToModelConverter.toModelQuestion(question);
+                    modelQuestion.setDomain(domain);
+                    modelQuestion = questionService.createQuestion(modelQuestion);
+                    
+                    for (com.loyaltypartner.elok.quiz.xml.Answer answer : question.getAnswer()) {
+                        Answer modelAnswer = XmlToModelConverter.toModelAnswer(answer);
+                        answerService.createAnswerForQuestionId(modelQuestion.getId(), modelAnswer);
+                    }
+                    
+                }
+            }
+        };
     }
 
     @Bean
@@ -94,6 +129,13 @@ public class QuizApplication {
     @Bean
     protected Module module() {
         return new Hibernate5Module();
+    }
+    
+    @Bean
+    public ModelMapper modelMapper() {
+        ModelMapper modelMapper = new ModelMapper();
+        modelMapper.getConfiguration().setMatchingStrategy(MatchingStrategies.STRICT);
+        return modelMapper;
     }
 
 }

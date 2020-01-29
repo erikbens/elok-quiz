@@ -8,8 +8,8 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
-import com.loyaltypartner.elok.quiz.model.Question;
 import com.loyaltypartner.elok.quiz.model.QuestionFilter;
+import com.loyaltypartner.elok.quiz.model.QuizQuestionDTO;
 
 import io.swagger.annotations.ApiImplicitParam;
 import io.swagger.annotations.ApiImplicitParams;
@@ -28,7 +28,7 @@ public interface IQuizController {
     @RequestMapping(value = "/quiz", consumes = { MediaType.APPLICATION_JSON_VALUE }, produces = {
             MediaType.APPLICATION_JSON_VALUE }, method = RequestMethod.POST, headers = {})
     @ApiImplicitParams({ @ApiImplicitParam(name = "Content-Type", value = MediaType.APPLICATION_JSON_VALUE, paramType = "header") })
-    public ResponseEntity<List<Question>> getQuizByQuestionFilter(
+    public ResponseEntity<List<QuizQuestionDTO>> getQuizByQuestionFilter(
             @ApiParam(value = "questionFilter", required = false) @RequestBody(required = false) QuestionFilter questionFilter);
 
 }

@@ -8,5 +8,5 @@ import com.loyaltypartner.elok.quiz.model.Question;
 public interface QuestionRepositoryCustom {
     
     public List<Question> findQuestionsForDomainIdAndDifficulty(Long domainId, Difficulty difficulty);
-
+    
 }

@@ -86,7 +86,12 @@
 			<groupId>com.fasterxml.jackson.datatype</groupId>
 			<artifactId>jackson-datatype-hibernate5</artifactId>
 		</dependency>
-
+		<!-- Entity / DTO Mapping -->
+		<dependency>
+			<groupId>org.modelmapper</groupId>
+			<artifactId>modelmapper</artifactId>
+			<version>2.3.6</version>
+		</dependency>
 	</dependencies>
 
 	<build>
@@ -94,6 +99,26 @@
 			<plugin>
 				<groupId>org.springframework.boot</groupId>
 				<artifactId>spring-boot-maven-plugin</artifactId>
+			</plugin>
+
+			<plugin>
+				<groupId>org.codehaus.mojo</groupId>
+				<artifactId>jaxb2-maven-plugin</artifactId>
+				<version>2.5.0</version>
+				<executions>
+					<execution>
+						<id>xjc</id>
+						<goals>
+							<goal>xjc</goal>
+						</goals>
+					</execution>
+				</executions>
+				<configuration>
+					<packageName>com.loyaltypartner.elok.quiz.xml</packageName>
+					<sources>
+						<source>src/main/resources/xsd/questions.xsd</source>
+					</sources>
+				</configuration>
 			</plugin>
 		</plugins>
 	</build>
