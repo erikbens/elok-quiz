@@ -10,6 +10,8 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
 import com.loyaltypartner.elok.quiz.model.User;
+import com.loyaltypartner.elok.quiz.model.UserLoginDTO;
+import com.loyaltypartner.elok.quiz.model.UserLoginResponseDTO;
 
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiImplicitParam;
@@ -48,8 +50,8 @@ public interface IUserController {
     @ApiImplicitParams({ @ApiImplicitParam(name = "Content-Type", value = MediaType.APPLICATION_JSON_VALUE, paramType = "header") })
     ResponseEntity<User> createUser(@ApiParam(value = "user", required = true) @RequestBody(required = true) User user);
 
-    @ApiOperation(value = "Updates an existing user with the given data.", nickname = "updateUser", authorizations = { @Authorization(value = "bearer") }, tags = {
-            "Users" })
+    @ApiOperation(value = "Updates an existing user with the given data.", nickname = "updateUser", authorizations = {
+            @Authorization(value = "bearer") }, tags = { "Users" })
     @ApiResponses(value = { @ApiResponse(code = 201, message = "Created"), @ApiResponse(code = 400, message = "Bad request"),
             @ApiResponse(code = 401, message = "Unauthorized"), @ApiResponse(code = 403, message = "Forbidden") })
     @RequestMapping(value = "/users/{userId}", consumes = { MediaType.APPLICATION_JSON_VALUE }, produces = {
@@ -57,5 +59,14 @@ public interface IUserController {
     @ApiImplicitParams({ @ApiImplicitParam(name = "Content-Type", value = MediaType.APPLICATION_JSON_VALUE, paramType = "header") })
     ResponseEntity<User> updateUser(@ApiParam(value = "userId", required = true) @PathVariable("userId") Long userId,
             @ApiParam(value = "user", required = true) @RequestBody(required = true) User user);
+
+    @ApiOperation(value = "Logs in a user with the given name and password.", nickname = "loginUser", authorizations = {
+            @Authorization(value = "bearer") }, tags = { "Users" })
+    @ApiResponses(value = { @ApiResponse(code = 200, message = "OK"), @ApiResponse(code = 400, message = "Bad request"),
+            @ApiResponse(code = 401, message = "Unauthorized"), @ApiResponse(code = 403, message = "Forbidden") })
+    @RequestMapping(value = "/users/login", consumes = { MediaType.APPLICATION_JSON_VALUE }, produces = {
+            MediaType.APPLICATION_JSON_VALUE }, method = RequestMethod.POST, headers = {})
+    @ApiImplicitParams({ @ApiImplicitParam(name = "Content-Type", value = MediaType.APPLICATION_JSON_VALUE, paramType = "header") })
+    ResponseEntity<UserLoginResponseDTO> loginUser(@ApiParam(value = "loginData", required = true) @RequestBody(required = true) UserLoginDTO loginData);
 
 }

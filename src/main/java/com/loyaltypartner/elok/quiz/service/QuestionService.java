@@ -61,7 +61,7 @@ public class QuestionService {
         if (pageable == null) {
             pageable = PageRequest.of(0, this.pageSize);
         }
-        return questionRepository.findByDomain(domainId, pageable);
+        return questionRepository.findByDomain(domainId, pageable).getContent();
     }
 
     public List<Question> findQuestionsByTitleOrText(String query) {

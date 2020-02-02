@@ -3,6 +3,8 @@ package com.loyaltypartner.elok.quiz.model;
 import javax.persistence.Entity;
 import javax.persistence.EnumType;
 import javax.persistence.Enumerated;
+import javax.persistence.NamedQueries;
+import javax.persistence.NamedQuery;
 
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -12,6 +14,9 @@ import lombok.Setter;
 @Getter
 @Setter
 @NoArgsConstructor
+@NamedQueries({
+    @NamedQuery(name = "User.findByName", query = "SELECT u FROM User u WHERE u.name = :name")
+})
 public class User extends BaseEntity {
     
     private String name;

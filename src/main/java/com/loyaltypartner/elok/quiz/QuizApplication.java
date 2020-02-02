@@ -1,5 +1,7 @@
 package com.loyaltypartner.elok.quiz;
 
+import java.util.Locale;
+
 import org.modelmapper.ModelMapper;
 import org.modelmapper.convention.MatchingStrategies;
 import org.springframework.boot.CommandLineRunner;
@@ -7,8 +9,10 @@ import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.context.annotation.Bean;
 import org.springframework.web.filter.CommonsRequestLoggingFilter;
+import org.springframework.web.servlet.LocaleResolver;
 import org.springframework.web.servlet.config.annotation.CorsRegistry;
 import org.springframework.web.servlet.config.annotation.WebMvcConfigurer;
+import org.springframework.web.servlet.i18n.SessionLocaleResolver;
 
 import com.fasterxml.jackson.databind.Module;
 import com.fasterxml.jackson.datatype.hibernate5.Hibernate5Module;
@@ -17,6 +21,8 @@ import com.loyaltypartner.elok.quiz.imports.converter.XmlToModelConverter;
 import com.loyaltypartner.elok.quiz.model.Answer;
 import com.loyaltypartner.elok.quiz.model.Domain;
 import com.loyaltypartner.elok.quiz.model.Question;
+import com.loyaltypartner.elok.quiz.model.Role;
+import com.loyaltypartner.elok.quiz.model.User;
 import com.loyaltypartner.elok.quiz.repository.AnswerRepository;
 import com.loyaltypartner.elok.quiz.repository.DomainRepository;
 import com.loyaltypartner.elok.quiz.repository.QuestionRepository;
@@ -81,7 +87,19 @@ public class QuizApplication {
         return args -> {
             userRepository.save(DummyGenerator.generateUser());
             userRepository.save(DummyGenerator.generateUser());
+            
+            User admin = new User();
+            admin.setName("admin");
+            admin.setPass("123456");
+            admin.setRole(Role.ADMIN);
+            userRepository.save(admin);
 
+            User user = new User();
+            user.setName("user");
+            user.setPass("123456");
+            user.setRole(Role.USER);
+            userRepository.save(user);
+            
             Domain domain = DummyGenerator.generateDomain();
             Question question = DummyGenerator.generateQuestion(domain);
             domain.addQuestion(question);
@@ -136,6 +154,13 @@ public class QuizApplication {
         ModelMapper modelMapper = new ModelMapper();
         modelMapper.getConfiguration().setMatchingStrategy(MatchingStrategies.STRICT);
         return modelMapper;
+    }
+    
+    @Bean
+    public LocaleResolver localeResolver() {
+        SessionLocaleResolver localeResolver = new SessionLocaleResolver();
+        localeResolver.setDefaultLocale(Locale.GERMANY);
+        return localeResolver;
     }
 
 }

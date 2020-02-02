@@ -3,11 +3,9 @@ package com.loyaltypartner.elok.quiz.repository;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
 
-import com.loyaltypartner.elok.quiz.model.User;
+import com.loyaltypartner.elok.quiz.model.HighscoreEntry;
 
 @Repository
-public interface UserRepository extends JpaRepository<User, Long> {
-    
-    public User findByName(String name);
+public interface HighscoreEntryRepository extends JpaRepository<HighscoreEntry, Long> {
 
 }

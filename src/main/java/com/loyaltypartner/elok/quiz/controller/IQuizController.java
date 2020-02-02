@@ -8,8 +8,10 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
+import com.loyaltypartner.elok.quiz.model.Highscore;
 import com.loyaltypartner.elok.quiz.model.QuestionFilter;
 import com.loyaltypartner.elok.quiz.model.QuizQuestionDTO;
+import com.loyaltypartner.elok.quiz.model.QuizResultDTO;
 
 import io.swagger.annotations.ApiImplicitParam;
 import io.swagger.annotations.ApiImplicitParams;
@@ -30,5 +32,16 @@ public interface IQuizController {
     @ApiImplicitParams({ @ApiImplicitParam(name = "Content-Type", value = MediaType.APPLICATION_JSON_VALUE, paramType = "header") })
     public ResponseEntity<List<QuizQuestionDTO>> getQuizByQuestionFilter(
             @ApiParam(value = "questionFilter", required = false) @RequestBody(required = false) QuestionFilter questionFilter);
+    
+    @ApiOperation(value = "Saves the quiz result for the given question filter.", nickname = "submitQuiz", authorizations = {
+            @Authorization(value = "bearer") }, tags = { "Quiz" })
+    @ApiResponses(value = { @ApiResponse(code = 200, message = "Ok"), @ApiResponse(code = 400, message = "Bad request"),
+            @ApiResponse(code = 401, message = "Unauthorized"), @ApiResponse(code = 403, message = "Forbidden") })
+    @RequestMapping(value = "/quiz/submit", consumes = { MediaType.APPLICATION_JSON_VALUE }, produces = {
+            MediaType.APPLICATION_JSON_VALUE }, method = RequestMethod.POST, headers = {})
+    @ApiImplicitParams({ @ApiImplicitParam(name = "Content-Type", value = MediaType.APPLICATION_JSON_VALUE, paramType = "header") })
+    public ResponseEntity<Highscore> submitQuiz(
+            @ApiParam(value = "quizResult", required = true) @RequestBody(required = true) QuizResultDTO quizResult);
+
 
 }

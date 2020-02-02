@@ -3,11 +3,15 @@ package com.loyaltypartner.elok.quiz.service;
 import java.util.List;
 import java.util.Optional;
 
+import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import com.loyaltypartner.elok.quiz.controller.exception.LoginFailedException;
 import com.loyaltypartner.elok.quiz.controller.exception.UserNotFoundException;
+import com.loyaltypartner.elok.quiz.controller.exception.UserNotUniqueException;
 import com.loyaltypartner.elok.quiz.model.User;
+import com.loyaltypartner.elok.quiz.model.UserLoginResponseDTO;
 import com.loyaltypartner.elok.quiz.repository.UserRepository;
 
 @Service
@@ -15,6 +19,9 @@ public class UserService implements IUserService {
 
     @Autowired
     private UserRepository userRepository;
+    
+    @Autowired
+    private ModelMapper modelMapper;
 
     @Override
     public List<User> findAll() {
@@ -37,8 +44,12 @@ public class UserService implements IUserService {
     }
 
     @Override
-    public User create(User entity) {
-        return userRepository.save(entity);
+    public User create(User entity) throws UserNotUniqueException {
+        User user = userRepository.findByName(entity.getName());
+        if (user == null) {
+            return userRepository.save(entity);
+        }
+        throw new UserNotUniqueException(entity.getName());
     }
     
     @Override
@@ -49,6 +60,17 @@ public class UserService implements IUserService {
         user.setPass(entity.getPass());
         
         return userRepository.save(user);
+    }
+
+    @Override
+    public UserLoginResponseDTO login(String name, String pass) throws LoginFailedException {
+        User user = this.userRepository.findByName(name);
+        if (user != null && user.getPass().equals(pass)) {
+            UserLoginResponseDTO dto = modelMapper.map(user, UserLoginResponseDTO.class);
+            dto.setToken("999999");
+            return dto;
+        }
+        throw new LoginFailedException(name, pass);
     }
 
 }

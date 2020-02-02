@@ -92,6 +92,12 @@
 			<artifactId>modelmapper</artifactId>
 			<version>2.3.6</version>
 		</dependency>
+		<!-- i18N -->
+		<dependency>
+			<groupId>org.springframework.boot</groupId>
+			<artifactId>spring-boot-starter-thymeleaf</artifactId>
+			<version>2.2.4.RELEASE</version>
+		</dependency>
 	</dependencies>
 
 	<build>
