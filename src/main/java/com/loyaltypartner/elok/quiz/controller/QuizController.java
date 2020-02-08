@@ -1,6 +1,5 @@
 package com.loyaltypartner.elok.quiz.controller;
 
-import java.util.Collections;
 import java.util.List;
 import java.util.stream.Collectors;
 
@@ -9,7 +8,10 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.server.ResponseStatusException;
 
+import com.loyaltypartner.elok.quiz.controller.exception.HighscoreNotFoundException;
+import com.loyaltypartner.elok.quiz.i18n.Translator;
 import com.loyaltypartner.elok.quiz.model.Difficulty;
 import com.loyaltypartner.elok.quiz.model.Highscore;
 import com.loyaltypartner.elok.quiz.model.Question;
@@ -36,7 +38,6 @@ public class QuizController implements IQuizController {
         Long domainId = questionFilter != null ? questionFilter.getDomainId() : null;
         Difficulty difficulty = questionFilter != null ? questionFilter.getDifficulty() : null;
         List<Question> questions = questionService.findQuestionsByDomainIdAndDifficulty(domainId, difficulty);
-        Collections.shuffle(questions);
         List<QuizQuestionDTO> quizQuestions = questions.stream().map(this::convertToDto).collect(Collectors.toList());
         return new ResponseEntity<List<QuizQuestionDTO>>(quizQuestions, HttpStatus.OK);
     }
@@ -48,8 +49,11 @@ public class QuizController implements IQuizController {
 
     @Override
     public ResponseEntity<Highscore> submitQuiz(QuizResultDTO quizResult) {
-        Highscore highscore = highscoreService.handleQuizResult(quizResult);
-        return new ResponseEntity<Highscore>(highscore, HttpStatus.OK);
+        try {
+            return new ResponseEntity<Highscore>(highscoreService.handleQuizResult(quizResult), HttpStatus.OK);
+        } catch (HighscoreNotFoundException e) {
+            throw new ResponseStatusException(HttpStatus.NOT_FOUND, Translator.toLocale("error.highscore.notfound"), e);
+        }
     }
     
 }

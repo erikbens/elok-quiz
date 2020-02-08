@@ -120,7 +120,12 @@ public class QuestionService {
     }
 
     public List<Question> findQuestionsByDomainIdAndDifficulty(Long domainId, Difficulty difficulty) {
-        return questionRepository.findQuestionsForDomainIdAndDifficulty(domainId, difficulty);
+        List<Question> questions = questionRepository.findQuestionsForDomainIdAndDifficulty(domainId, difficulty);
+        Collections.shuffle(questions);
+        for (Question question : questions) {
+            Collections.shuffle(question.getAnswers());
+        }
+        return questions;
     }
 
 }

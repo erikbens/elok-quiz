@@ -18,7 +18,7 @@ public class HighscoreEntry extends BaseEntity {
     
     private String name;
     private Integer correctAnswers;
-    private Integer wrongAnswers;
+    private Integer incorrectAnswers;
     
     @JsonIgnoreProperties("entries")
     @ManyToOne(fetch = FetchType.EAGER)

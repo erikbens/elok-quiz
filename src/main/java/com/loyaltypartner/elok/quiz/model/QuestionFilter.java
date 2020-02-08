@@ -7,6 +7,8 @@ import javax.persistence.NamedQueries;
 import javax.persistence.NamedQuery;
 import javax.persistence.OneToOne;
 
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
@@ -16,17 +18,17 @@ import lombok.Setter;
 @Setter
 @Entity
 @NamedQueries({
-    @NamedQuery(name = "QuestionFilter.findQuestionFilterForDomainIdAndDifficulty", query = "SELECT f FROM QuestionFilter f WHERE f.difficulty = :difficulty AND f.domainId = :domainId")
-})
+        @NamedQuery(name = "QuestionFilter.findQuestionFilterForDomainIdAndDifficulty", query = "SELECT f FROM QuestionFilter f WHERE ((:difficulty is null and f.difficulty is null) OR f.difficulty = :difficulty) AND ((:domainId is null and f.domainId is null) OR f.domainId = :domainId)") })
 public class QuestionFilter extends BaseEntity {
-    
+
     private Long domainId;
-    
+
     @Enumerated
     private Difficulty difficulty;
-    
+
     @OneToOne
     @JoinColumn
+    @JsonIgnoreProperties("questionFilter")
     private Highscore highscore;
 
 }

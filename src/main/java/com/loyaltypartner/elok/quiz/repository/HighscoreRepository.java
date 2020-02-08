@@ -10,6 +10,6 @@ import com.loyaltypartner.elok.quiz.model.Highscore;
 @Repository
 public interface HighscoreRepository extends JpaRepository<Highscore, Long> {
     
-    public Optional<Highscore> findHighscoreByQuestionFilter(Long questionFilterId);
+    public Optional<Highscore> findHighscoreByQuestionFilter(Long id);
 
 }

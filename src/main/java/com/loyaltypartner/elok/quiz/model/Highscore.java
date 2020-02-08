@@ -10,6 +10,8 @@ import javax.persistence.NamedQuery;
 import javax.persistence.OneToMany;
 import javax.persistence.OneToOne;
 
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
@@ -19,10 +21,11 @@ import lombok.Setter;
 @Setter
 @Entity
 @NamedQueries({
-    @NamedQuery(name = "findHighscoreByQuestionFilter", query = "SELECT h FROM Highscore h WHERE h.questionFilter.id = :id")
+    @NamedQuery(name = "Highscore.findHighscoreByQuestionFilter", query = "SELECT h FROM Highscore h WHERE h.questionFilter.id = :id")
 })
 public class Highscore extends BaseEntity {
     
+    @JsonIgnoreProperties("highscore")
     @OneToOne(mappedBy = "highscore")
     private QuestionFilter questionFilter;
     

@@ -1,10 +1,8 @@
 package com.loyaltypartner.elok.quiz.controller;
 
 import java.util.List;
-import java.util.Locale;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.context.MessageSource;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Pageable;
 import org.springframework.http.HttpStatus;
@@ -14,14 +12,12 @@ import org.springframework.web.server.ResponseStatusException;
 
 import com.loyaltypartner.elok.quiz.controller.exception.DomainNotFoundException;
 import com.loyaltypartner.elok.quiz.controller.exception.QuestionNotFoundException;
+import com.loyaltypartner.elok.quiz.i18n.Translator;
 import com.loyaltypartner.elok.quiz.model.Question;
 import com.loyaltypartner.elok.quiz.service.QuestionService;
 
 @RestController
 public class QuestionController implements IQuestionController {
-    
-    @Autowired
-    private MessageSource messageSource;
 
     @Autowired
     private QuestionService questionService;
@@ -44,8 +40,7 @@ public class QuestionController implements IQuestionController {
                 return new ResponseEntity<Question>(questionService.findById(questionId), HttpStatus.OK);
             }
         } catch (QuestionNotFoundException e) {
-            throw new ResponseStatusException(HttpStatus.NOT_FOUND,
-                    messageSource.getMessage("error.question.notfound", null, Locale.GERMANY), e);
+            throw new ResponseStatusException(HttpStatus.NOT_FOUND, Translator.toLocale("error.question.notfound"), e);
         }
     }
 
@@ -76,11 +71,9 @@ public class QuestionController implements IQuestionController {
             }
             return new ResponseEntity<Question>(questionService.updateQuestion(questionId, question), HttpStatus.OK);
         } catch (QuestionNotFoundException e) {
-            throw new ResponseStatusException(HttpStatus.NOT_FOUND,
-                    messageSource.getMessage("error.question.notfound", null, Locale.GERMANY), e);
+            throw new ResponseStatusException(HttpStatus.NOT_FOUND, Translator.toLocale("error.question.notfound"), e);
         } catch (DomainNotFoundException e) {
-            throw new ResponseStatusException(HttpStatus.NOT_FOUND,
-                    messageSource.getMessage("error.domain.notfound", null, Locale.GERMANY), e);
+            throw new ResponseStatusException(HttpStatus.NOT_FOUND, Translator.toLocale("error.domain.notfound"), e);
         }
     }
 
@@ -90,8 +83,7 @@ public class QuestionController implements IQuestionController {
             questionService.deleteQuestion(questionId);
             return new ResponseEntity<Void>(HttpStatus.OK);
         } catch (QuestionNotFoundException e) {
-            throw new ResponseStatusException(HttpStatus.NOT_FOUND,
-                    messageSource.getMessage("error.question.notfound", null, Locale.GERMANY), e);
+            throw new ResponseStatusException(HttpStatus.NOT_FOUND, Translator.toLocale("error.question.notfound"), e);
         }
     }
 
@@ -100,8 +92,7 @@ public class QuestionController implements IQuestionController {
         try {
             return new ResponseEntity<Boolean>(questionService.checkAnswers(questionId, answerIds), HttpStatus.OK);
         } catch (QuestionNotFoundException e) {
-            throw new ResponseStatusException(HttpStatus.NOT_FOUND,
-                    messageSource.getMessage("error.question.notfound", null, Locale.GERMANY), e);
+            throw new ResponseStatusException(HttpStatus.NOT_FOUND, Translator.toLocale("error.question.notfound"), e);
         }
     }
 
