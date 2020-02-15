@@ -12,7 +12,7 @@ import com.loyaltypartner.elok.quiz.model.User;
 public class DummyGenerator {
     
     public static Question generateQuestion(Domain domain) {
-        return new Question("Some title " + new Random().nextInt(), "Some text", "Some image", "me", Difficulty.EASY, domain);
+        return new Question("Some title " + new Random().nextInt(), "Some text", null, "me", Difficulty.EASY, domain);
     }
     
     public static Answer generateAnswer(Question question) {

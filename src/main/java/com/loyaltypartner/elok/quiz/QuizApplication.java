@@ -8,6 +8,8 @@ import org.springframework.boot.CommandLineRunner;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.context.annotation.Bean;
+import org.springframework.core.io.Resource;
+import org.springframework.core.io.ResourceLoader;
 import org.springframework.web.filter.CommonsRequestLoggingFilter;
 import org.springframework.web.servlet.LocaleResolver;
 import org.springframework.web.servlet.config.annotation.CorsRegistry;
@@ -16,6 +18,7 @@ import org.springframework.web.servlet.i18n.AcceptHeaderLocaleResolver;
 
 import com.fasterxml.jackson.databind.Module;
 import com.fasterxml.jackson.datatype.hibernate5.Hibernate5Module;
+import com.loyaltypartner.elok.quiz.helpers.AES;
 import com.loyaltypartner.elok.quiz.imports.XmlQuestionImporter;
 import com.loyaltypartner.elok.quiz.imports.converter.XmlToModelConverter;
 import com.loyaltypartner.elok.quiz.model.Answer;
@@ -52,11 +55,13 @@ public class QuizApplication {
         filter.setAfterMessagePrefix("REQUEST HANDLED: ");
         return filter;
     }
-    
+
     @Bean
-    public CommandLineRunner importFromXml(DomainService domainService, QuestionService questionService, AnswerService answerService) {
+    public CommandLineRunner importFromXml(DomainService domainService, QuestionService questionService, AnswerService answerService,
+            ResourceLoader resourceLoader) {
         return args -> {
-            List list = XmlQuestionImporter.readXml("C:/Users/mysel/Downloads/question_pool_all.xml");
+            Resource resource = resourceLoader.getResource("classpath:question_pool_all.xml");
+            List list = XmlQuestionImporter.readXml(resource.getInputStream());
             if (list != null) {
                 for (com.loyaltypartner.elok.quiz.xml.Question question : list.getQuestion()) {
                     String area = question.getArea();
@@ -66,16 +71,16 @@ public class QuizApplication {
                         domain.setName(area);
                         domain = domainService.create(domain);
                     }
-                    
+
                     Question modelQuestion = XmlToModelConverter.toModelQuestion(question);
                     modelQuestion.setDomain(domain);
                     modelQuestion = questionService.createQuestion(modelQuestion);
-                    
+
                     for (com.loyaltypartner.elok.quiz.xml.Answer answer : question.getAnswer()) {
                         Answer modelAnswer = XmlToModelConverter.toModelAnswer(answer);
                         answerService.createAnswerForQuestionId(modelQuestion.getId(), modelAnswer);
                     }
-                    
+
                 }
             }
         };
@@ -85,21 +90,18 @@ public class QuizApplication {
     public CommandLineRunner demoData(UserRepository userRepository, QuestionRepository questionRepository, AnswerRepository answerRepository,
             DomainRepository domainRepository, QuestionService questionService) {
         return args -> {
-            userRepository.save(DummyGenerator.generateUser());
-            userRepository.save(DummyGenerator.generateUser());
-            
             User admin = new User();
             admin.setName("admin");
-            admin.setPass("123456");
+            admin.setPass(AES.encrypt("123456", "eLOK-Quiz-2019"));
             admin.setRole(Role.ADMIN);
             userRepository.save(admin);
 
             User user = new User();
             user.setName("user");
-            user.setPass("123456");
+            user.setPass(AES.encrypt("123456", "eLOK-Quiz-2019"));
             user.setRole(Role.USER);
             userRepository.save(user);
-            
+
             Domain domain = DummyGenerator.generateDomain();
             Question question = DummyGenerator.generateQuestion(domain);
             domain.addQuestion(question);
@@ -112,17 +114,16 @@ public class QuizApplication {
             question.addAnswer(a3);
             question.addAnswer(a4);
 
-
             Question question1 = DummyGenerator.generateQuestion(domain);
             domain.addQuestion(question1);
-            
+
             Answer a5 = DummyGenerator.generateAnswer(question1);
             Answer a6 = DummyGenerator.generateAnswer(question1);
             Answer a7 = DummyGenerator.generateAnswer(question1);
             question1.addAnswer(a5);
             question1.addAnswer(a6);
             question1.addAnswer(a7);
-            
+
             domain = domainRepository.save(domain);
             a1 = answerRepository.save(a1);
             a2 = answerRepository.save(a2);
@@ -143,19 +144,19 @@ public class QuizApplication {
             }
         };
     }
-    
+
     @Bean
     protected Module module() {
         return new Hibernate5Module();
     }
-    
+
     @Bean
     public ModelMapper modelMapper() {
         ModelMapper modelMapper = new ModelMapper();
         modelMapper.getConfiguration().setMatchingStrategy(MatchingStrategies.STRICT);
         return modelMapper;
     }
-    
+
     @Bean
     public LocaleResolver localeResolver() {
         AcceptHeaderLocaleResolver localeResolver = new AcceptHeaderLocaleResolver();

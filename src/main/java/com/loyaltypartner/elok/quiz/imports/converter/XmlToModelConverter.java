@@ -10,7 +10,6 @@ public class XmlToModelConverter {
         Question question = new Question();
         question.setDifficulty(toModelDifficulty(input.getLevel()));
         question.setCreatedBy("Import");
-        question.setImage(input.getImg());
         question.setText(input.getText());
         question.setTitle(input.getText().substring(0, input.getText().length() > 30 ? 30 : input.getText().length()));
         return question;

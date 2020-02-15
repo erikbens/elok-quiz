@@ -1,0 +1,442 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<list>
+	<question text="Aus welcher Eigenschaft lässt sich die 2-Stufigkeit einer Bestellung ableiten?" img="bc100.png" level="A" area="BKM">
+		<answer solution="false" text="BC25"/>
+		<answer solution="true" text="BC100"/>
+		<answer solution="false" text="BC50"/>
+		<answer solution="false" text="BC75"/>
+		<answer solution="false" text="BC53"/>
+	</question>"
+	<question text="Wo kann ich nur als BahnComfort Kunden die Überholspur nutzen?" img="db_reisezentrum.jpg" level="A" area="BKM">
+		<answer solution="false" text="Autobahn"/>
+		<answer solution="true" text="Reisezentrum"/>
+		<answer solution="false" text="Rolltreppe"/>
+	</question>
+	<question text="Was sieht man auf diesem Bild?" img="db_automat.jpg" level="A" area="MKT">
+		<answer solution="false" text="Zigarettenautomat"/>
+		<answer solution="false" text="Kaugummiautomat"/>
+		<answer solution="true" text="Fahrkartenautomat"/>
+	</question>
+	<question text="Warum werden Kunden in Siebel erst nach 4 Jahren gelöscht?" level="B" area="LUP">
+		<answer solution="false" text="Weil die Haltefrist nach GoBD bei 4 Jahren liegt."/>
+		<answer solution="false" text="Weil der Datenschutz für Vertragskunden nicht gilt."/>
+		<answer solution="true" text="Weil die Oracle-Lizenzmessung es erfordert."/>
+	</question>
+	<question text="Aus welcher Eigenschaft lässt sich die 2-Stufigkeit einer Bestellung ableiten?" level="A" area="BKM">
+		<answer solution="false" text="Das Gültigkeitsdatum liegt in der Vergangenheit."/>
+		<answer solution="true" text="Es gibt eine vBC-Nummer."/>
+		<answer solution="true" text="Der Kunde hat im Vorsystem bezahlt."/>
+	</question>
+	<question text="Wann sind Abolauf-Bestellung 2-stufig?" level="A" area="BKM">
+		<answer solution="false" text="Immer"/>
+		<answer solution="true" text="Nie"/>
+		<answer solution="false" text="Wenn der Kunde per Vorkasse bezahlen muss."/>
+	</question>
+	<question text="Was ist der Unterschied zwischen SPSS und SPS?" level="A" area="MKT">
+		<answer solution="false" text="Ein S"/>
+		<answer solution="false" text="Keiner"/>
+		<answer solution="true" text="Das eine ist eine Software, das andere ein Firma."/>
+	</question>
+	<question text="Warum werden Kunden in Siebel erst nach 4 Jahren gelöscht?" level="B" area="LUP">
+		<answer solution="false" text="Weil die Haltefrist nach GoBD bei 4 Jahren liegt."/>
+		<answer solution="false" text="Weil der Datenschutz für Vertragskunden nicht gilt."/>
+		<answer solution="true" text="Weil die Oracle-Lizenzmessung es erfordert."/>
+	</question>
+	<question text="Wo werdern im DWH Berechnungslogiken angelegt?" level="A" area="DWH">
+		<answer solution="true" text="Im Presentation Layer"/>
+		<answer solution="true" text="Im Logical Layer"/>
+		<answer solution="false" text="Im Physical Layer"/>
+		<answer solution="true" text="Im ETL"/>
+		<answer solution="false" text="In der Stagingtabelle"/>
+	</question>
+	<question text="Was ist der Change Capture" level="C" area="DWH">
+		<answer solution="true" text="Eine Information, welche Daten bereits in das DWH übertragen wurde."/>
+		<answer solution="false" text="Das Datum des letzten ETL-Laufs?"/>
+		<answer solution="false" text="Eine Kennzeichnung, ob ein Datensatz ins DWH übertragen wurde."/>
+	</question>
+	<question text="Können einem Kunden BahnBonus-Punkt direkt gutgeschrieben werden?" level="A" area="LOY">
+		<answer solution="false" text="Ja, die Willkommenspunkte werden direkt auf dem Konto gutgeschrieben."/>
+		<answer solution="true" text="Nein, es wird immer die LOY-Engine genutzt."/>
+	</question>
+	<question text="Was ist ein POC?" level="B" area="MKT">
+		<answer solution="false" text="Proof of Concept"/>
+		<answer solution="true" text="Point of Contact"/>
+		<answer solution="false" text="Purchase of Coupons"/>
+	</question>
+	<question text="Was ist der KOR-002?" level="A" area="BKM">
+		<answer solution="false" text="Eine Vorkasse-Rechnung"/>
+		<answer solution="false" text="Die Prenotification"/>
+		<answer solution="true" text="Rückfragen bei fehlenden Bestellinformationen"/>
+	</question>
+	<question text="Was ist die Bedeutung unserer Servernamen (z.B. pkwpsi01)?" level="A" area="BKM">
+		<answer solution="true" text="Kennzeichen für eLOK, Betriebssystem, Umgebung, Serverfunktion, Nummerierung"/>
+		<answer solution="false" text="tbd"/>
+		<answer solution="false" text="tbd"/>
+	</question>
+	<question text="Wie viele Zonen beinhaltet das eLOK Netzwerk Security Konzept für PRD und SPG?" level="A" area="BKM">
+		<answer solution="true" text="Drei"/>
+		<answer solution="false" text="tbd"/>
+		<answer solution="false" text="tbd"/>
+	</question>
+	<question text="Welche Decision Engine wird in MCM für die Angebotsausspielung verwendet?" level="A" area="BKM">
+		<answer solution="true" text="Drools"/>
+		<answer solution="false" text="Real Time Decision Engine"/>
+		<answer solution="false" text="tbd"/>
+	</question>
+	<question text="Welche Datenbank wird in MCM verwendet?" level="A" area="BKM">
+		<answer solution="true" text="Mongo DB"/>
+		<answer solution="false" text="Oracle"/>
+		<answer solution="false" text="RDS"/>
+	</question>
+	<question text="Welche Technologien werden eingesetzt, um das Datawarehouse zu befüllen?" level="A" area="BKM">
+		<answer solution="true" text="DAC + Informatica"/>
+		<answer solution="false" text="Golden Gate"/>
+		<answer solution="false" text="tbd"/>
+	</question>
+	<question text="Welche Komponente wird verwendet, um Dateien automatisiert mit Partnersystemen auszutauschen?" level="A" area="BKM">
+		<answer solution="true" text="COM-Server"/>
+		<answer solution="false" text="File-Gateway"/>
+		<answer solution="false" text="Sharepoint"/>
+	</question>
+	<question text="Nach welchen Funktionsblöcken sind die Siebel Server in Produktion und Spiegel gruppiert?" level="A" area="BKM">
+		<answer solution="true" text="Batch, Webservices, Marketing, Callcenter"/>
+		<answer solution="false" text="DEV TST SPG PRD"/>
+		<answer solution="false" text="PRD SMS MCM iFM VDS bahn.de"/>
+	</question>
+	<question text="Was ist der Unterschied zwischen MCM und Outmatch?" level="A" area="BKM">
+		<answer solution="true" text="Outmatch: Produkt, MCM: Customizing Schicht"/>
+		<answer solution="false" text="Outmatch: Versand von Push Kampagnen, MCM: Bereitstellung von Pull Kampagnen"/>
+		<answer solution="false" text="Outmatch: Ausspielung von Kampagnen, MCM: Erfassen der Responses"/>
+	</question>
+	<question text="Welcher der folgenden Server sind NICHT virtualisiert" level="A" area="BKM">
+		<answer solution="true" text="COM Server"/>
+		<answer solution="false" text="MCM Server"/>
+		<answer solution="false" text="Mongo-DB Server"/>
+	</question>
+	<question text="Über welche Technologie erfolgt der Austausch von Kunden Stammdaten mit der ZKDB?" level="A" area="BKM">
+		<answer solution="true" text="JMS Queues"/>
+		<answer solution="false" text="Webservices"/>
+		<answer solution="false" text="Flat File Austausch"/>
+	</question>
+	<question text="Welche Komponente wird für jedes anzubindende Partnersystem geklont?" level="A" area="BKM">
+		<answer solution="false" text="EIM Enterprise Integration Manager"/>
+		<answer solution="false" text="Siebel Server Manager"/>
+		<answer solution="true" text="EAI Object Manager"/>
+	</question>
+	<question text="Wofür steht das Kürzel OLA?" level="A" area="BKM">
+		<answer solution="false" text="Online Level Agreement"/>
+		<answer solution="true" text="Operational Level Agreement"/>
+		<answer solution="false" text="Order List Asset"/>
+	</question>
+	<question text="Wo kannst du prüfen, ob das Upgrade einer Software Auswirkungen auf andere Systemkomponenten hat?" level="A" area="BKM">
+		<answer solution="false" text="Im neuen Wiki"/>
+		<answer solution="false" text="Im alten Wiki"/>
+		<answer solution="true" text="In der Abhängigkeitsmatrix"/>
+	</question>
+	<question text="Wozu wird der SPSS Server benötigt? Für: " level="A" area="BKM">
+		<answer solution="true" text="Datamining"/>
+		<answer solution="false" text="Siebel Email Outbound"/>
+		<answer solution="false" text="MCM Server"/>
+	</question>
+	<question text="In der Produktion steht ein IDS Server. Wofür steht IDS?" level="A" area="BKM">
+		<answer solution="false" text="Integration Delivery System"/>
+		<answer solution="false" text="Invasion Defence System"/>
+		<answer solution="true" text="Intrusion Detection System"/>
+	</question>
+	<question text="Worauf ist bei Firewall Freischaltungen zu achten, wenn das Quellsystem aus einer Cloud auf eLOK zugreifen will?" level="A" area="BKM">
+		<answer solution="true" text="Es müssen dedizierte IP-Adressen definiert werden, Subnetze werden als Quelle nicht freigeschaltet."/>
+		<answer solution="false" text="Feischaltungen immer erst auf dem COM Server vornehmen."/>
+		<answer solution="false" text="IP-Adressen werden automatisch über das DWH vergeben."/>
+	</question>
+	<question text="Welches der folgenden Attribute ist in Zukunft bei Änderungen und Neu-Implementierungen von Webservices immer zu berücksichtigen?" level="A" area="BKM">
+		<answer solution="true" text="Correlation ID"/>
+		<answer solution="false" text="Vendo Id"/>
+		<answer solution="false" text="Kundenkonto ID"/>
+	</question>
+	<question text="Wenn von eLOK aus ein Vendo-Service in der Prozessbaustein-Schicht angesprochen wird, muss dieser...?" level="A" area="BKM">
+		<answer solution="true" text="Vendo im REST/JSON Format ansprechen"/>
+		<answer solution="false" text="Vendo im JMS Format ansprechen"/>
+		<answer solution="false" text="Vendo mit SBC/JMS ansprechen"/>
+	</question>
+	<question text="Wofür steht KKM?" level="A" area="BKM">
+		<answer solution="true" text="Kundenzentriertes Kampagnen Management"/>
+		<answer solution="false" text="Kundenzentrierter Kampagnen Mehrwert"/>
+		<answer solution="false" text="Kunden Kampagnen Marketing"/>
+	</question>
+	<question text="Die Mongo DB ist eine sogenannte No-SQL Datenbank. Konkret wird sie klassifiziert als:" level="A" area="BKM">
+		<answer solution="true" text="Document oriented database"/>
+		<answer solution="false" text="Key/Value database"/>
+		<answer solution="false" text="ColumnFamily database"/>
+	</question>
+	<question text="Die Oracle Datenbanken für das eLOK System laufen..." level="A" area="BKM">
+		<answer solution="true" text="auf einer Exadata"/>
+		<answer solution="false" text="in einem Real Application Cluster (RAC)"/>
+		<answer solution="false" text="auf dedizierten VMS auf den ESX Hosts"/>
+	</question>
+	<question text="Was ist ETL?" level="A" area="DWH">
+		<answer solution="false" text="Elvis Test Layer"/>
+		<answer solution="false" text="Empty Table Space"/>
+		<answer solution="true" text="Extract Transform Load"/>
+	</question>
+	<question text="Was ist OLTP?" level="A" area="DWH">
+		<answer solution="false" text="Oracle Transaction Program"/>
+		<answer solution="true" text="Online Transaction Processing"/>
+		<answer solution="false" text="Order Transport Process"/>
+	</question>
+	<question text="Was ist OLAP?" level="A" area="DWH">
+		<answer solution="true" text="Online Analytical Processing"/>
+		<answer solution="false" text="Online Loyalty Processing"/>
+		<answer solution="false" text="Oracle Analytical Program"/>
+	</question>
+	<question text="Was ist OBIEE?" level="A" area="DWH">
+		<answer solution="true" text="Oracle Business Intelligence Enterprise Edition"/>
+		<answer solution="false" text="ORACLE Business Informatica Enterprise Edition"/>
+		<answer solution="false" text="Oracle Business Information Enterpirse Edition"/>
+	</question>
+	<question text="Was ist Oracle DAC?" level="A" area="DWH">
+		<answer solution="false" text="Oracle Daily Aggregate Console"/>
+		<answer solution="true" text="Oracle Data Warehouse Administration Console"/>
+		<answer solution="false" text="Oracle Data Abstraction Cursor"/>
+	</question>  
+	<question text="Über welche Tool kann man ETL starten?" level="B" area="DWH">
+		<answer solution="false" text="Informatica Console"/>
+                <answer solution="false" text="OBIEE"/>
+		<answer solution="true" text="Siebel, DAC"/>
+	</question>  
+	<question text="Welcher Job startet ETL daily?" level="A" area="DWH">
+		<answer solution="true" text="elok_p_crm_dwh_pkload_d"/>
+		<answer solution="false" text="elok_p_crm_dwh_pkload_w"/>
+		<answer solution="false" text="elok_p_crm_dwh_pkload_d_agg"/>
+	</question>  
+	<question text="Siebel Datenbank gehört zu?" level="A" area="DWH">
+		<answer solution="true" text="OLTP"/>
+		<answer solution="false" text="OLAP"/>
+	</question> 
+	<question text="Wo kann man ein Segment bauen?" level="A" area="DWH">
+		<answer solution="true" text="OBIEE"/>
+		<answer solution="false" text=""/>
+		<answer solution="false" text=""/>
+	</question>  
+	<question text="Ab wann wird ein Segment in alle andere Systeme (Siebel, MCM) bekannt?" level="C" area="DWH">
+		<answer solution="true" text="Angebotsaktivierung"/>
+		<answer solution="false" text="Zielgruppe Beladung"/>
+		<answer solution="false" text="Angebotausspielung"/>
+	</question>   
+	<question text="Aus welcher Tabelle(n) kann man Kundeninformationen eines Segments finden?" level="B" area="DWH">
+		<answer solution="true" text="WC_DMM_PERSON_D, WC_DMM_PERSON_A"/>
+		<answer solution="false" text="WC_LOY_MEMBER_D"/>
+		<answer solution="false" text="W_PARTY_PER_D"/>
+	</question> 
+	<question text="ETL Entwickelungstool ist:" level="B" area="DWH">
+		<answer solution="true" text="Informatica"/>
+		<answer solution="false" text="Siebel Tool"/>
+		<answer solution="false" text="DAC"/>
+	</question> 
+	<question text="Aus welcher Komponente wird Kunden Informationen ins MCM importiert?" level="B" area="DWH">
+		<answer solution="true" text="OLAP"/>
+		<answer solution="false" text="OLTP"/>
+	</question> 
+	<question text="Wie werden von eLOK die Zahlungseingänge registriert?" level="A" area="BKM">
+		<answer solution="true" text="Alle Zahlungsbelege werden an das extern angebundene 'Integrierte Forderungsmanagemnent' (iFM) übergeben, welches dann Zahlungseingänge oder auch Zahlungsausfälle an eLOK zurückmeldet."/>
+		<answer solution="false" text="eLOK prüft die Buchungen auf den zugeordneten Bankkonten der Bahn."/>
+		<answer solution="false" text="eLOK empfängt Zahlungsmeldungen von der Website bahn.de"/>
+	</question>
+	<question text="Wann kann eine BahnCard nur per Vorkasse bezahlt werden?" level="A" area="BKM">
+		<answer solution="true" text="Bei Kunden mit (Adresse im Ausland (außerhalb DACH inkl. Liechtenstein) und ohne SEPA-IBAN) oder Lastschrift- und Rechnungssperre"/>
+		<answer solution="false" text="Bei Kunden, die nicht pünktlich bezahlen."/>
+		<answer solution="false" text="Bei Kunden, die keine Lastschrift-Einzugsermächtigung erteilen wollen."/>
+	</question>
+	<question text="Wie bekommt der Kunde sine Plastikkarte nach der Bestellung der BahnCard?" level="A" area="BKM">
+		<answer solution="true" text="eLOK übermittelt die Kartenprägedaten und den Rohlingcode an den Kartenproduzenten, der die Produktion und den Versand der Karte übernimmt und an eLOK zurückmeldet."/>
+		<answer solution="false" text="eLOK prägt die Karten im Kartenproduktionszentrum (KPZ), bedruckt die Versandumschläge und die Briefe werden dann vom Versanddienstleister übernommen"/>
+		<answer solution="false" text="eLOK versendet eine virtuelle BAhnCardnummer an den Kunden und der kann sich dann eine Plastikarte in den DB Reisezentren prägen lassen."/>
+	</question>
+	<question text="Was passiert zuerst, wenn ein BahnCard-Auftrag ausgeführt wird?" level="A" area="BKM">
+		<answer solution="true" text="eLOK eLOK prüft den Auftrag mit Hilfe von Regeln die in der Konsistenzchecktabelle und der Vertragsmatrix festgelegt sind."/>
+		<answer solution="false" text="eLOK sendet den Vertrag über die Ausgangsschnittstelle an das Vertragsausführungssystem (VAS)."/>
+		<answer solution="false" text="eLOK sendet eine Bonitätsanfrage an die SCHUFA."/>
+	</question>
+	<question text="Welche Geschäftsobjekte legt eLOK bei der erfolgreichen Ausführung eines Auftrags an?" level="A" area="BKM">
+		<answer solution="true" text="eLOK legt einen Vertrag, sowie pro Auftragsposition eine Vertragsposition, ein Bestandsprodukt und ein Produktionsauftrag pro bestellter BahnCard im Auftrag erzeugt."/>
+		<answer solution="false" text="eLOK legt ein Kundenkonto mit der bestellten BahnCard an."/>
+		<answer solution="true" text="eLOK legt die Forderungen für die bestellte BahnCard an, die dann vom Rechnungslauf aufgegriffen werden."/>
+	</question>
+	<question text="Welche Geschäftsobjekte legt eLOK bei der Anlage eines Auftrags an?" level="A" area="BKM">
+		<answer solution="true" text="eLOK legt einen Auftrag und ein oder mehrere Auftragspositionen an."/>
+		<answer solution="false" text="eLOK legt einen Neuvertrag mit der bestellten BahnCard an."/>
+		<answer solution="false" text="eLOK legt eine Karte mit der Verbindung zum Kundenkontakt an."/>
+	</question>
+	<question text="Über welche Bestellkanäle kann ein BahnCard 25/50 Jahresprodukt bestellt werden?" level="A" area="BKM">
+		<answer solution="true" text="bahn.de"/>
+		<answer solution="true" text="Reisezentrum"/>
+		<answer solution="true" text="Papier-Bestellschein"/>
+		<answer solution="false" text="Abocenter"/>
+		<answer solution="false" text="amazon.de"/>
+		<answer solution="false" text="ebay.de"/>
+	</question>
+	<question text="Über welche Bestellkanäle kann eine Zusatzkarte zur Hauptkarte bestellt werden?" level="A" area="BKM">
+		<answer solution="false" text="bahn.de"/>
+		<answer solution="true" text="Reisezentrum"/>
+		<answer solution="true" text="Papier-Bestellschein"/>
+		<answer solution="false" text="Abocenter"/>
+		<answer solution="false" text="amazon.de"/>
+		<answer solution="false" text="ebay.de"/>
+	</question>
+	<question text="Was passiert, wenn bei der Bestellprüfung ein Fehler auftritt?">
+		<answer solution="true" text="eLOK erzeugt eine Aktivität, die den Fehler beschreibt, legt - abhängig von der Art des Fehlers - einen Vorgang zur weiteren Bearbeitung an und hält die weitere Verarbeitung der Bestellung an, bis der Fehler behoben und die Bestellprüfung erneut ausgeführt wird."/>
+		<answer solution="false" text="eLOK markiert die Bestellung als fehlerhaft und sendet automatisch ein Bestellformular an den Kunden. "/>
+		<answer solution="false" text="eLOK sendet eine Fehlermeldung mit den Auftragsdaten über einen Web Service an das externe Fehlermanagement-System FMS."/>
+	</question>	  
+	<question text="Wie kann ein Kunde seine BahnCard kündigen?" level="A" area="BKM">
+		<answer solution="false" text="Automatisch über bahn.de"/>
+		<answer solution="false" text="Reisezentrum"/>
+		<answer solution="true" text="schriftlich per Email, Brief oder das bahn.de Kontaktformular"/>
+		<answer solution="false" text="Abocenter"/>
+	</question>
+	<question text="Welche Kündigungsarten werden in eLOK unterschieden?" level="A" area="BKM">
+		<answer solution="true" text="Außerordentliche Kündigung"/>
+		<answer solution="true" text="Ordentliche Kündigung von Monatsprodukten"/>
+		<answer solution="true" text="Abokündigung"/>
+		<answer solution="false" text="Unordentliche Kündigung"/>
+		<answer solution="false" text="Vorübergehende Kündigung"/>
+	</question>
+	<question text="In welchem Status kann die Kündigung eines Auftrags widerrufen werden?" level="A" area="BKM">
+		<answer solution="true" text="Kdg. - Warten auf Kunde"/>
+		<answer solution="false" text="Gekündigt"/>
+		<answer solution="false" text="Aktiv"/>
+		<answer solution="false" text="Vollständig"/>
+	</question>
+	<question text="Welche Kündigungsfristen gelten für Jahres- und Monatsprodukte?" level="A" area="BKM">
+		<answer solution="true" text="Bei Jahresprodukten 42 Tage zum Ablauf des Vertragsjahres, bei Monatsprodukten 28 Tage zum Ablauf eines Vertragsmonats."/>
+		<answer solution="false" text="Bei Jahresprodukten 30 Tage zum Ablauf des Vertragsjahres, bei Monatsprodukten 6 Wochen zum Ablauf eines Vertragsmonats."/>
+		<answer solution="false" text="Bei Jahresprodukten 4 Wochen zum Ablauf des Vertragsjahres, bei Monatsprodukten 30 Tage zum Ablauf eines Vertragsmonats."/>
+	</question>
+	<question text="Wie heisst das Regelwerk, dass bei der Auftragsprüfung durchlaufen wird?" level="A" area="BKM">
+		<answer solution="true" text="Konsistenzcheck-Tabelle oder auch Konsitab"/>
+		<answer solution="false" text="Prüfungsregelmatrix"/>
+		<answer solution="false" text="Auftragprüftabelle"/>
+	</question>
+	<question text="Was macht die Schnittstelle elok_p_iop_crm_i01?" level="A" area="BKM">
+		<answer solution="true" text="Die WebService-Schnittstelle überträgt BahnCard-Bestellungen aus dem Online Portal bzw. über die bahn.bonus Mobile App an eLOK."/>
+		<answer solution="false" text="Die Schnittstelle liefert nach einer erfolgreichen Authentifizierung des Kunden, einen initialen Set an ausführlichen Kundeninformationen an bahn.de oder an die Mobile-App."/>
+		<answer solution="false" text="Über diese Schnittstelle werden Kundenstammdatenänderungswünsche über Selfservice-Funktionalitäten von bahn.de bzw. über die App an eLOK übertragen."/>
+		<answer solution="false" text="Auf Anfrage von bahn.de liefert eLOK ein Konglomerat an spezifizierten Informationen über Karten, Bestellungen und Bestellpositionen eines Kunden."/>
+	</question>
+	<question text="Was macht die Schnittstelle elok_p_iop_crm_i03?" level="A" area="BKM">
+		<answer solution="false" text="Die WebService-Schnittstelle überträgt BahnCard-Bestellungen aus dem Online Portal bzw. über die bahn.bonus Mobile App an eLOK."/>
+		<answer solution="true" text="Die Schnittstelle liefert nach einer erfolgreichen Authentifizierung des Kunden, einen initialen Set an ausführlichen Kundeninformationen an bahn.de oder an die Mobile-App."/>
+		<answer solution="false" text="Über diese Schnittstelle werden Kundenstammdatenänderungswünsche über Selfservice-Funktionalitäten von bahn.de bzw. über die App an eLOK übertragen."/>
+		<answer solution="false" text="Auf Anfrage von bahn.de liefert eLOK ein Konglomerat an spezifizierten Informationen über Karten, Bestellungen und Bestellpositionen eines Kunden."/>
+	</question>
+	<question text="Was macht die Schnittstelle elok_p_iop_crm_i04?" level="A" area="BKM">
+		<answer solution="false" text="Die WebService-Schnittstelle überträgt BahnCard-Bestellungen aus dem Online Portal bzw. über die bahn.bonus Mobile App an eLOK."/>
+		<answer solution="false" text="Die Schnittstelle liefert nach einer erfolgreichen Authentifizierung des Kunden, einen initialen Set an ausführlichen Kundeninformationen an bahn.de oder an die Mobile-App."/>
+		<answer solution="true" text="Über diese Schnittstelle werden Kundenstammdatenänderungswünsche über Selfservice-Funktionalitäten von bahn.de bzw. über die App an eLOK übertragen."/>
+		<answer solution="false" text="Auf Anfrage von bahn.de liefert eLOK ein Konglomerat an spezifizierten Informationen über Karten, Bestellungen und Bestellpositionen eines Kunden."/>
+	</question>
+	<question text="Was macht die Schnittstelle elok_p_iop_crm_i09?" level="A" area="BKM">
+		<answer solution="false" text="Die WebService-Schnittstelle überträgt BahnCard-Bestellungen aus dem Online Portal bzw. über die bahn.bonus Mobile App an eLOK."/>
+		<answer solution="false" text="Die Schnittstelle liefert nach einer erfolgreichen Authentifizierung des Kunden, einen initialen Set an ausführlichen Kundeninformationen an bahn.de oder an die Mobile-App."/>
+		<answer solution="false" text="Über diese Schnittstelle werden Kundenstammdatenänderungswünsche über Selfservice-Funktionalitäten von bahn.de bzw. über die App an eLOK übertragen."/>
+		<answer solution="true" text="Auf Anfrage von bahn.de liefert eLOK ein Konglomerat an spezifizierten Informationen über Karten, Bestellungen und Bestellpositionen eines Kunden."/>
+	</question>
+	<question text="Was macht die Schnittstelle elok_p_iop_crm_i10?" level="A" area="BKM">
+		<answer solution="true" text="Die Schnittstelle dient zur Anmeldung bzw. Abmeldung des Kunden vom Email-Marketing und übermittelt den Kundenwunsch in Form der Werte persönlicher Email-Adresse und Email-Einwilligungserklärung."/>
+		<answer solution="false" text="Die Schnittstelle wird benötigt, um die Übertragung von Serviceanfragen zwischen BIBE / App-Server und eLok durchzuführen."/>
+		<answer solution="false" text="Die Schnittstelle dient dem DOI-Prozesses für die Email-Marketing Anmeldung und übermittelt die aus der URL extrahierten Werte Kundenschlüssel und Email-Adresse an eLok zur Bestätigung der Einwilligung des Kunden."/>
+		<answer solution="false" text="Die Schnittstelle dient der Anmeldung bzw. Abmeldung des Kunden zum/vom Kundenbindungsprogramm über das Online-Portal bzw. der Mobile-App."/>
+	</question>
+	<question text="Was macht die Schnittstelle elok_p_iop_crm_i12?" level="A" area="BKM">
+		<answer solution="false" text="Die Schnittstelle dient zur Anmeldung bzw. Abmeldung des Kunden vom Email-Marketing und übermittelt den Kundenwunsch in Form der Werte persönlicher Email-Adresse und Email-Einwilligungserklärung."/>
+		<answer solution="true" text="Die Schnittstelle wird benötigt, um die Übertragung von Serviceanfragen zwischen BIBE / App-Server und eLok durchzuführen."/>
+		<answer solution="false" text="Die Schnittstelle dient dem DOI-Prozesses für die Email-Marketing Anmeldung und übermittelt die aus der URL extrahierten Werte Kundenschlüssel und Email-Adresse an eLok zur Bestätigung der Einwilligung des Kunden."/>
+		<answer solution="false" text="Die Schnittstelle dient der Anmeldung bzw. Abmeldung des Kunden zum/vom Kundenbindungsprogramm über das Online-Portal bzw. der Mobile-App."/>
+	</question>
+	<question text="Was macht die Schnittstelle elok_p_iop_crm_i17?" level="A" area="BKM">
+		<answer solution="false" text="Die Schnittstelle dient zur Anmeldung bzw. Abmeldung des Kunden vom Email-Marketing und übermittelt den Kundenwunsch in Form der Werte persönlicher Email-Adresse und Email-Einwilligungserklärung."/>
+		<answer solution="false" text="Die Schnittstelle wird benötigt, um die Übertragung von Serviceanfragen zwischen BIBE / App-Server und eLok durchzuführen."/>
+		<answer solution="true" text="Die Schnittstelle dient dem DOI-Prozesses für die Email-Marketing Anmeldung und übermittelt die aus der URL extrahierten Werte Kundenschlüssel und Email-Adresse an eLok zur Bestätigung der Einwilligung des Kunden."/>
+		<answer solution="false" text="Die Schnittstelle dient der Anmeldung bzw. Abmeldung des Kunden zum/vom Kundenbindungsprogramm über das Online-Portal bzw. der Mobile-App."/>
+	</question>
+	<question text="Was macht die Schnittstelle elok_p_iop_crm_i18?" level="A" area="BKM">
+		<answer solution="false" text="Die Schnittstelle dient zur Anmeldung bzw. Abmeldung des Kunden vom Email-Marketing und übermittelt den Kundenwunsch in Form der Werte persönlicher Email-Adresse und Email-Einwilligungserklärung."/>
+		<answer solution="false" text="Die Schnittstelle wird benötigt, um die Übertragung von Serviceanfragen zwischen BIBE / App-Server und eLok durchzuführen."/>
+		<answer solution="false" text="Die Schnittstelle dient dem DOI-Prozesses für die Email-Marketing Anmeldung und übermittelt die aus der URL extrahierten Werte Kundenschlüssel und Email-Adresse an eLok zur Bestätigung der Einwilligung des Kunden."/>
+		<answer solution="true" text="Die Schnittstelle dient der Anmeldung bzw. Abmeldung des Kunden zum/vom Kundenbindungsprogramm über das Online-Portal bzw. der Mobile-App."/>
+	</question>
+	<question text="Was macht die Schnittstelle elok_p_iop_crm_i19?" level="A" area="BKM">
+		<answer solution="true" text="Die Schnittstelle dient der Übertragung von Punkte-Transaktionen eines Kunden zusammen mit den jeweiligen Einzelpositionen von eLok an das Online-Portal die bahn.bonus Mobile App."/>
+		<answer solution="false" text="Die Schnittstelle dient dazu, ein kleines Kundendatenset für bahn.de zur Content-Steuerung und Punktestandanzeige zur Verfügung zu stellen."/>
+		<answer solution="false" text="Die Schnittstelle dient der Übermittlung einer Ersatzkarten-Bestellung des Kunden aus dem Online-Portal bzw. der Mobile-App."/>
+		<answer solution="false" text="Die Schnittstelle dient der Beleg-Anforderung zu einer Bestellung durch den Kunden via bahn.de. Die Rechnungskopie bzw. Quittung wird per Systembrief an den Kunden versendet."/>
+	</question>
+	<question text="Was macht die Schnittstelle elok_p_iop_crm_i20?" level="A" area="BKM">
+		<answer solution="false" text="Die Schnittstelle dient der Übertragung von Punkte-Transaktionen eines Kunden zusammen mit den jeweiligen Einzelpositionen von eLok an das Online-Portal die bahn.bonus Mobile App."/>
+		<answer solution="true" text="Die Schnittstelle dient dazu, ein kleines Kundendatenset für bahn.de zur Content-Steuerung und Punktestandanzeige zur Verfügung zu stellen."/>
+		<answer solution="false" text="Die Schnittstelle dient der Übermittlung einer Ersatzkarten-Bestellung des Kunden aus dem Online-Portal bzw. der Mobile-App."/>
+		<answer solution="false" text="Die Schnittstelle dient der Beleg-Anforderung zu einer Bestellung durch den Kunden via bahn.de. Die Rechnungskopie bzw. Quittung wird per Systembrief an den Kunden versendet."/>
+	</question>
+	<question text="Was macht die Schnittstelle elok_p_iop_crm_i21?" level="A" area="BKM">
+		<answer solution="false" text="Die Schnittstelle dient der Übertragung von Punkte-Transaktionen eines Kunden zusammen mit den jeweiligen Einzelpositionen von eLok an das Online-Portal die bahn.bonus Mobile App."/>
+		<answer solution="false" text="Die Schnittstelle dient dazu, ein kleines Kundendatenset für bahn.de zur Content-Steuerung und Punktestandanzeige zur Verfügung zu stellen."/>
+		<answer solution="true" text="Die Schnittstelle dient der Übermittlung einer Ersatzkarten-Bestellung des Kunden aus dem Online-Portal bzw. der Mobile-App."/>
+		<answer solution="false" text="Die Schnittstelle dient der Beleg-Anforderung zu einer Bestellung durch den Kunden via bahn.de. Die Rechnungskopie bzw. Quittung wird per Systembrief an den Kunden versendet."/>
+	</question>
+	<question text="Was macht die Schnittstelle elok_p_iop_crm_i23?" level="A" area="BKM">
+		<answer solution="true" text="Die Schnittstelle dient der Übertragung von Punkte-Transaktionen eines Kunden zusammen mit den jeweiligen Einzelpositionen von eLok an das Online-Portal die bahn.bonus Mobile App."/>
+		<answer solution="false" text="Die Schnittstelle dient dazu, ein kleines Kundendatenset für bahn.de zur Content-Steuerung und Punktestandanzeige zur Verfügung zu stellen."/>
+		<answer solution="false" text="Die Schnittstelle dient der Übermittlung einer Ersatzkarten-Bestellung des Kunden aus dem Online-Portal bzw. der Mobile-App."/>
+		<answer solution="true" text="Die Schnittstelle dient der Beleg-Anforderung zu einer Bestellung durch den Kunden via bahn.de. Die Rechnungskopie bzw. Quittung wird per Systembrief an den Kunden versendet."/>
+	</question>
+	<question text="Was macht die Schnittstelle elok_p_iop_crm_i24?" level="A" area="BKM">
+		<answer solution="true" text="Die Schnittstelle dient dazu, dem Kunden auf seinen expliziten Wunsch hin eine neue PIN zu erstellen und diese per Post/ Brief oder per E-Mail an den Kunden zu versenden."/>
+		<answer solution="false" text="Die Schnittstelle liefert eine Liste mit für den Kunden bestellbaren Ersatzkarten im Zuge der Ersatzkartenbestellung über das SelfService-Portal auf bahn.de bzw. dem App-Server der bahn.bonus Mobile App."/>
+		<answer solution="false" text="Die Schnittstelle dient der Übertragung von Prämienbestellungen von bahn.de oder durch Buchungsportale von Prämienpartnern an eLOK."/>
+		<answer solution="false" text="Technische Stornos zu Prämienbestellungen können von bahn.de oder einem Prämienpartner automatisiert an eLOK übertragen werden.  "/>
+		<answer solution="false" text="Die Schnittstelle liefert alle eMobile relevanten Kartendaten sowie Kartendetails eines Kunden an bahn.de oder die Mobile-App."/>
+	</question>
+	<question text="Was macht die Schnittstelle elok_p_iop_crm_i25?" level="A" area="BKM">
+		<answer solution="true" text="Die Schnittstelle dient dazu, dem Kunden auf seinen expliziten Wunsch hin eine neue PIN zu erstellen und diese per Post/ Brief oder per E-Mail an den Kunden zu versenden."/>
+		<answer solution="false" text="Die Schnittstelle liefert eine Liste mit für den Kunden bestellbaren Ersatzkarten im Zuge der Ersatzkartenbestellung über das SelfService-Portal auf bahn.de bzw. dem App-Server der bahn.bonus Mobile App."/>
+		<answer solution="false" text="Die Schnittstelle dient der Übertragung von Prämienbestellungen von bahn.de oder durch Buchungsportale von Prämienpartnern an eLOK."/>
+		<answer solution="false" text="Technische Stornos zu Prämienbestellungen können von bahn.de oder einem Prämienpartner automatisiert an eLOK übertragen werden.  "/>
+		<answer solution="false" text="Die Schnittstelle liefert alle eMobile relevanten Kartendaten sowie Kartendetails eines Kunden an bahn.de oder die Mobile-App."/>
+	</question>
+	<question text="Was macht die Schnittstelle elok_p_iop_crm_i30?" level="A" area="BKM">
+		<answer solution="false" text="Die Schnittstelle dient dazu, dem Kunden auf seinen expliziten Wunsch hin eine neue PIN zu erstellen und diese per Post/ Brief oder per E-Mail an den Kunden zu versenden."/>
+		<answer solution="false" text="Die Schnittstelle liefert eine Liste mit für den Kunden bestellbaren Ersatzkarten im Zuge der Ersatzkartenbestellung über das SelfService-Portal auf bahn.de bzw. dem App-Server der bahn.bonus Mobile App."/>
+		<answer solution="true" text="Die Schnittstelle dient der Übertragung von Prämienbestellungen von bahn.de oder durch Buchungsportale von Prämienpartnern an eLOK."/>
+		<answer solution="false" text="Technische Stornos zu Prämienbestellungen können von bahn.de oder einem Prämienpartner automatisiert an eLOK übertragen werden.  "/>
+		<answer solution="false" text="Die Schnittstelle liefert alle eMobile relevanten Kartendaten sowie Kartendetails eines Kunden an bahn.de oder die Mobile-App."/>
+	</question>
+	<question text="Was macht die Schnittstelle elok_p_iop_crm_i31?" level="A" area="BKM">
+		<answer solution="false" text="Die Schnittstelle dient dazu, dem Kunden auf seinen expliziten Wunsch hin eine neue PIN zu erstellen und diese per Post/ Brief oder per E-Mail an den Kunden zu versenden."/>
+		<answer solution="false" text="Die Schnittstelle liefert eine Liste mit für den Kunden bestellbaren Ersatzkarten im Zuge der Ersatzkartenbestellung über das SelfService-Portal auf bahn.de bzw. dem App-Server der bahn.bonus Mobile App."/>
+		<answer solution="false" text="Die Schnittstelle dient der Übertragung von Prämienbestellungen von bahn.de oder durch Buchungsportale von Prämienpartnern an eLOK."/>
+		<answer solution="true" text="Technische Stornos zu Prämienbestellungen können von bahn.de oder einem Prämienpartner automatisiert an eLOK übertragen werden.  "/>
+		<answer solution="false" text="Die Schnittstelle liefert alle eMobile relevanten Kartendaten sowie Kartendetails eines Kunden an bahn.de oder die Mobile-App."/>
+	</question>
+	<question text="Was macht die Schnittstelle elok_p_iop_crm_i33?" level="A" area="BKM">
+		<answer solution="true" text="Die Schnittstelle dient dazu, dem Kunden auf seinen expliziten Wunsch hin eine neue PIN zu erstellen und diese per Post/ Brief oder per E-Mail an den Kunden zu versenden."/>
+		<answer solution="false" text="Die Schnittstelle liefert eine Liste mit für den Kunden bestellbaren Ersatzkarten im Zuge der Ersatzkartenbestellung über das SelfService-Portal auf bahn.de bzw. dem App-Server der bahn.bonus Mobile App."/>
+		<answer solution="false" text="Die Schnittstelle dient der Übertragung von Prämienbestellungen von bahn.de oder durch Buchungsportale von Prämienpartnern an eLOK."/>
+		<answer solution="false" text="Technische Stornos zu Prämienbestellungen können von bahn.de oder einem Prämienpartner automatisiert an eLOK übertragen werden.  "/>
+		<answer solution="true" text="Die Schnittstelle liefert alle eMobile relevanten Kartendaten sowie Kartendetails eines Kunden an bahn.de oder die Mobile-App."/>
+	</question>
+	<question text="Was macht die Schnittstelle elok_p_bds_crm_trx?" level="A" area="BKM">
+		<answer solution="true" text="Über diese Batch-Schnittstelle werden Details zu Bahnfahrkarten- und BahnCard-Verkäufen sowie Stornos aus dem System Carrier nach eLok zum Sammeln von bb-Punkten übertragen."/>
+		<answer solution="false" text="Alle Vertriebsdatensätze, die in eLOK aufgrund eines Bahncard Verkaufs oder Stornierung erstellt wurden, werden an Carrier übermittelt."/>
+		<answer solution="false" text="Über diese Schnittstelle werden Vertriebs-Datensätze der Satzart 11 für 2-stufige BahnCard Bestellungen nach eLOK importiert."/>
+	</question>
+	<question text="Was macht die Schnittstelle elok_p_crm_vds_all?" level="A" area="BKM">
+		<answer solution="false" text="Über diese Batch-Schnittstelle werden Details zu Bahnfahrkarten- und BahnCard-Verkäufen sowie Stornos aus dem System Carrier nach eLok zum Sammeln von bb-Punkten übertragen."/>
+		<answer solution="true" text="Alle Vertriebsdatensätze, die in eLOK aufgrund eines Bahncard Verkaufs oder Stornierung erstellt wurden, werden an Carrier übermittelt."/>
+		<answer solution="false" text="Über diese Schnittstelle werden Vertriebs-Datensätze der Satzart 11 für 2-stufige BahnCard Bestellungen nach eLOK importiert."/>
+	</question>
+	<question text="Was macht die Schnittstelle elok_p_vds_crm_sa11_vbc?" level="A" area="BKM">
+		<answer solution="false" text="Über diese Batch-Schnittstelle werden Details zu Bahnfahrkarten- und BahnCard-Verkäufen sowie Stornos aus dem System Carrier nach eLok zum Sammeln von bb-Punkten übertragen."/>
+		<answer solution="false" text="Alle Vertriebsdatensätze, die in eLOK aufgrund eines Bahncard Verkaufs oder Stornierung erstellt wurden, werden an Carrier übermittelt."/>
+		<answer solution="true" text="Über diese Schnittstelle werden Vertriebs-Datensätze der Satzart 11 für 2-stufige BahnCard Bestellungen nach eLOK importiert."/>
+	</question>
+</list>
+

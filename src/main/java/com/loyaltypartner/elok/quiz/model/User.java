@@ -1,5 +1,6 @@
 package com.loyaltypartner.elok.quiz.model;
 
+import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.EnumType;
 import javax.persistence.Enumerated;
@@ -20,6 +21,8 @@ import lombok.Setter;
 public class User extends BaseEntity {
     
     private String name;
+    
+    @Column(length = 60)
     private String pass;
     
     @Enumerated(EnumType.STRING)
