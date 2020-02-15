@@ -10,8 +10,8 @@ import org.springframework.web.bind.annotation.RequestMethod;
 
 import com.loyaltypartner.elok.quiz.model.Highscore;
 import com.loyaltypartner.elok.quiz.model.QuestionFilter;
-import com.loyaltypartner.elok.quiz.model.QuizQuestionDTO;
-import com.loyaltypartner.elok.quiz.model.QuizResultDTO;
+import com.loyaltypartner.elok.quiz.model.dto.QuizQuestionDTO;
+import com.loyaltypartner.elok.quiz.model.dto.QuizResultDTO;
 
 import io.swagger.annotations.ApiImplicitParam;
 import io.swagger.annotations.ApiImplicitParams;

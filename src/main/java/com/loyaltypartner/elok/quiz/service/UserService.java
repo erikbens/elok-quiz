@@ -12,7 +12,7 @@ import com.loyaltypartner.elok.quiz.controller.exception.UserNotFoundException;
 import com.loyaltypartner.elok.quiz.controller.exception.UserNotUniqueException;
 import com.loyaltypartner.elok.quiz.helpers.AES;
 import com.loyaltypartner.elok.quiz.model.User;
-import com.loyaltypartner.elok.quiz.model.UserLoginResponseDTO;
+import com.loyaltypartner.elok.quiz.model.dto.UserLoginResponseDTO;
 import com.loyaltypartner.elok.quiz.repository.UserRepository;
 
 @Service

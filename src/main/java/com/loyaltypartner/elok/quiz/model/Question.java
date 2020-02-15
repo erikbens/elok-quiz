@@ -8,7 +8,6 @@ import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.Enumerated;
 import javax.persistence.FetchType;
-import javax.persistence.Lob;
 import javax.persistence.ManyToOne;
 import javax.persistence.NamedQueries;
 import javax.persistence.NamedQuery;
@@ -35,8 +34,7 @@ public class Question extends BaseEntity {
     @Column(length = 500)
     private String text;
     
-    @Lob
-    private byte[] image;
+    private String image;
     
     private String createdBy;
 
@@ -50,7 +48,7 @@ public class Question extends BaseEntity {
     @OneToMany(mappedBy = "question", cascade = { CascadeType.PERSIST, CascadeType.REMOVE }, fetch = FetchType.LAZY)
     private List<Answer> answers;
 
-    public Question(String title, String text, byte[] image, String createdBy, Difficulty diffculty, Domain domain) {
+    public Question(String title, String text, String image, String createdBy, Difficulty diffculty, Domain domain) {
         super();
         this.title = title;
         this.text = text;

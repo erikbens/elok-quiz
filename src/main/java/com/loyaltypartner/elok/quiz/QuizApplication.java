@@ -10,6 +10,7 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.context.annotation.Bean;
 import org.springframework.core.io.Resource;
 import org.springframework.core.io.ResourceLoader;
+import org.springframework.data.domain.PageRequest;
 import org.springframework.web.filter.CommonsRequestLoggingFilter;
 import org.springframework.web.servlet.LocaleResolver;
 import org.springframework.web.servlet.config.annotation.CorsRegistry;
@@ -18,21 +19,15 @@ import org.springframework.web.servlet.i18n.AcceptHeaderLocaleResolver;
 
 import com.fasterxml.jackson.databind.Module;
 import com.fasterxml.jackson.datatype.hibernate5.Hibernate5Module;
-import com.loyaltypartner.elok.quiz.helpers.AES;
 import com.loyaltypartner.elok.quiz.imports.XmlQuestionImporter;
 import com.loyaltypartner.elok.quiz.imports.converter.XmlToModelConverter;
 import com.loyaltypartner.elok.quiz.model.Answer;
 import com.loyaltypartner.elok.quiz.model.Domain;
-import com.loyaltypartner.elok.quiz.model.Question;
-import com.loyaltypartner.elok.quiz.model.Role;
-import com.loyaltypartner.elok.quiz.model.User;
-import com.loyaltypartner.elok.quiz.repository.AnswerRepository;
-import com.loyaltypartner.elok.quiz.repository.DomainRepository;
-import com.loyaltypartner.elok.quiz.repository.QuestionRepository;
-import com.loyaltypartner.elok.quiz.repository.UserRepository;
+import com.loyaltypartner.elok.quiz.model.dto.QuestionDTO;
 import com.loyaltypartner.elok.quiz.service.AnswerService;
 import com.loyaltypartner.elok.quiz.service.DomainService;
 import com.loyaltypartner.elok.quiz.service.QuestionService;
+import com.loyaltypartner.elok.quiz.storage.FileSystemStorageService;
 import com.loyaltypartner.elok.quiz.xml.List;
 
 import springfox.documentation.swagger2.annotations.EnableSwagger2;
@@ -58,80 +53,40 @@ public class QuizApplication {
 
     @Bean
     public CommandLineRunner importFromXml(DomainService domainService, QuestionService questionService, AnswerService answerService,
-            ResourceLoader resourceLoader) {
+            ResourceLoader resourceLoader, ModelMapper modelMapper) {
         return args -> {
-            Resource resource = resourceLoader.getResource("classpath:question_pool_all.xml");
-            List list = XmlQuestionImporter.readXml(resource.getInputStream());
-            if (list != null) {
-                for (com.loyaltypartner.elok.quiz.xml.Question question : list.getQuestion()) {
-                    String area = question.getArea();
-                    Domain domain = domainService.findByName(area);
-                    if (domain == null) {
-                        domain = new Domain();
-                        domain.setName(area);
-                        domain = domainService.create(domain);
+            if (questionService.findAll(PageRequest.of(1, 1)).isEmpty()) {
+                Resource resource = resourceLoader.getResource("classpath:question_pool_all.xml");
+                List list = XmlQuestionImporter.readXml(resource.getInputStream());
+                if (list != null) {
+                    for (com.loyaltypartner.elok.quiz.xml.Question question : list.getQuestion()) {
+                        String area = question.getArea();
+                        Domain domain = domainService.findByName(area);
+                        if (domain == null) {
+                            domain = new Domain();
+                            domain.setName(area);
+                            domain = domainService.create(domain);
+                        }
+                        
+                        QuestionDTO modelQuestion = modelMapper.map(XmlToModelConverter.toModelQuestion(question), QuestionDTO.class);
+                        modelQuestion.setDomain(domain);
+                        modelQuestion = modelMapper.map(questionService.createQuestion(modelQuestion), QuestionDTO.class);
+                        
+                        for (com.loyaltypartner.elok.quiz.xml.Answer answer : question.getAnswer()) {
+                            Answer modelAnswer = XmlToModelConverter.toModelAnswer(answer);
+                            answerService.createAnswerForQuestionId(modelQuestion.getId(), modelAnswer);
+                        }
+                        
                     }
-
-                    Question modelQuestion = XmlToModelConverter.toModelQuestion(question);
-                    modelQuestion.setDomain(domain);
-                    modelQuestion = questionService.createQuestion(modelQuestion);
-
-                    for (com.loyaltypartner.elok.quiz.xml.Answer answer : question.getAnswer()) {
-                        Answer modelAnswer = XmlToModelConverter.toModelAnswer(answer);
-                        answerService.createAnswerForQuestionId(modelQuestion.getId(), modelAnswer);
-                    }
-
                 }
             }
         };
     }
 
     @Bean
-    public CommandLineRunner demoData(UserRepository userRepository, QuestionRepository questionRepository, AnswerRepository answerRepository,
-            DomainRepository domainRepository, QuestionService questionService) {
+    public CommandLineRunner initStorage(FileSystemStorageService storageService) {
         return args -> {
-            User admin = new User();
-            admin.setName("admin");
-            admin.setPass(AES.encrypt("123456", "eLOK-Quiz-2019"));
-            admin.setRole(Role.ADMIN);
-            userRepository.save(admin);
-
-            User user = new User();
-            user.setName("user");
-            user.setPass(AES.encrypt("123456", "eLOK-Quiz-2019"));
-            user.setRole(Role.USER);
-            userRepository.save(user);
-
-            Domain domain = DummyGenerator.generateDomain();
-            Question question = DummyGenerator.generateQuestion(domain);
-            domain.addQuestion(question);
-            Answer a1 = DummyGenerator.generateAnswer(question);
-            Answer a2 = DummyGenerator.generateAnswer(question);
-            Answer a3 = DummyGenerator.generateAnswer(question);
-            Answer a4 = DummyGenerator.generateAnswer(question);
-            question.addAnswer(a1);
-            question.addAnswer(a2);
-            question.addAnswer(a3);
-            question.addAnswer(a4);
-
-            Question question1 = DummyGenerator.generateQuestion(domain);
-            domain.addQuestion(question1);
-
-            Answer a5 = DummyGenerator.generateAnswer(question1);
-            Answer a6 = DummyGenerator.generateAnswer(question1);
-            Answer a7 = DummyGenerator.generateAnswer(question1);
-            question1.addAnswer(a5);
-            question1.addAnswer(a6);
-            question1.addAnswer(a7);
-
-            domain = domainRepository.save(domain);
-            a1 = answerRepository.save(a1);
-            a2 = answerRepository.save(a2);
-            a3 = answerRepository.save(a3);
-            a4 = answerRepository.save(a4);
-            answerRepository.save(a5);
-            answerRepository.save(a6);
-            answerRepository.save(a7);
+            storageService.init();
         };
     }
 

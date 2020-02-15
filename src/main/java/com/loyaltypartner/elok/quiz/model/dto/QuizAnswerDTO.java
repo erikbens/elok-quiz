@@ -1,4 +1,4 @@
-package com.loyaltypartner.elok.quiz.model;
+package com.loyaltypartner.elok.quiz.model.dto;
 
 import lombok.Getter;
 import lombok.NoArgsConstructor;

@@ -11,7 +11,7 @@ import com.loyaltypartner.elok.quiz.controller.exception.HighscoreNotFoundExcept
 import com.loyaltypartner.elok.quiz.model.Highscore;
 import com.loyaltypartner.elok.quiz.model.HighscoreEntry;
 import com.loyaltypartner.elok.quiz.model.QuestionFilter;
-import com.loyaltypartner.elok.quiz.model.QuizResultDTO;
+import com.loyaltypartner.elok.quiz.model.dto.QuizResultDTO;
 import com.loyaltypartner.elok.quiz.repository.HighscoreEntryRepository;
 import com.loyaltypartner.elok.quiz.repository.HighscoreRepository;
 import com.loyaltypartner.elok.quiz.repository.QuestionFilterRepository;

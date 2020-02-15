@@ -10,8 +10,8 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
 import com.loyaltypartner.elok.quiz.model.User;
-import com.loyaltypartner.elok.quiz.model.UserLoginDTO;
-import com.loyaltypartner.elok.quiz.model.UserLoginResponseDTO;
+import com.loyaltypartner.elok.quiz.model.dto.UserLoginDTO;
+import com.loyaltypartner.elok.quiz.model.dto.UserLoginResponseDTO;
 
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiImplicitParam;

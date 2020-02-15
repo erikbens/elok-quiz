@@ -1,6 +1,8 @@
-package com.loyaltypartner.elok.quiz.model;
+package com.loyaltypartner.elok.quiz.model.dto;
 
 import java.util.List;
+
+import com.loyaltypartner.elok.quiz.model.Difficulty;
 
 import lombok.Getter;
 import lombok.NoArgsConstructor;

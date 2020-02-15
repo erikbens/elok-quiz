@@ -16,8 +16,8 @@ import com.loyaltypartner.elok.quiz.model.Difficulty;
 import com.loyaltypartner.elok.quiz.model.Highscore;
 import com.loyaltypartner.elok.quiz.model.Question;
 import com.loyaltypartner.elok.quiz.model.QuestionFilter;
-import com.loyaltypartner.elok.quiz.model.QuizQuestionDTO;
-import com.loyaltypartner.elok.quiz.model.QuizResultDTO;
+import com.loyaltypartner.elok.quiz.model.dto.QuizQuestionDTO;
+import com.loyaltypartner.elok.quiz.model.dto.QuizResultDTO;
 import com.loyaltypartner.elok.quiz.service.HighscoreService;
 import com.loyaltypartner.elok.quiz.service.QuestionService;
 
