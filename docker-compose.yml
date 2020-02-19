@@ -30,9 +30,17 @@ services:
             - quizBackendNetwork
             - quizFrontendNetwork
         volumes:
-            - D:/temp:/images/questions
+            - elok-pictures:/images/questions
 
 networks:
     quizBackendNetwork:
 
     quizFrontendNetwork:
+    
+volumes:
+   elok-pictures:
+      driver: local
+      driver_opts:
+        type: none
+        device: //d/temp
+        o: bind
