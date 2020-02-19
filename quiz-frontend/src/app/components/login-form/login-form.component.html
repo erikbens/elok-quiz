@@ -1,0 +1,27 @@
+<div class="card my-5">
+	<div class="card-header">Login</div>
+	<div class="card-body">
+		<form [formGroup]="loginForm" (ngSubmit)="onSubmit()">
+			<div class="form-group">
+				<label for="name">Name</label> <input type="text"
+					class="form-control" id="name" formControlName="name"
+					placeholder="Geben Sie Ihren Namen ein"
+					[ngClass]="{ 'is-invalid': submitted && f['name'].errors }" />
+				<div *ngIf="submitted && f['name'].errors" class="invalid-feedback">
+					<div *ngIf="submitted && f['name'].errors?.required">Pflichtfeld!</div>
+				</div>
+			</div>
+			<div class="form-group">
+				<label for="pass">Passwort</label> <input type="password"
+					class="form-control" id="pass" formControlName="pass"
+					placeholder=""
+					[ngClass]="{ 'is-invalid': submitted && f['pass'].errors }" />
+				<div *ngIf="submitted && f['pass'].errors" class="invalid-feedback">
+					<div *ngIf="submitted && f['pass'].errors?.required">Pflichtfeld!</div>
+				</div>
+			</div>
+			<button type="submit" class="btn btn-success">Einloggen</button>
+			<button type="button" class="btn btn-secondary" (click)="goBack()">Abbrechen</button>
+		</form>
+	</div>
+</div>

@@ -1,0 +1,24 @@
+<div class="card my-5">
+    <h4 class="card-header">Antworten <small class="float-sm-right"><button class="btn btn-primary" routerLink="/admin/answers/0">Hinzufügen</button></small></h4>
+    <div class="card-body">
+        <table class="table table-bordered table-striped">
+            <thead class="thead-dark">
+                <tr>
+                    <th>#</th>
+                    <th>Text</th>
+                    <th>Aktionen</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr *ngFor="let answer of answers">
+                    <td>{{ answer.id }}</td>
+                    <td>{{ answer.text }}</td>
+                    <td>
+                        <button class="btn btn-primary" type="button" routerLink="/admin/answers/{{answer.id}}" >Bearbeiten</button>
+                        <button class="btn btn-danger ml-1" type="button" (click)="deleteAnswer(answer)" >Löschen</button>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+</div>

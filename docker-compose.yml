@@ -31,6 +31,18 @@ services:
             - quizFrontendNetwork
         volumes:
             - elok-pictures:/images/questions
+    elok-quiz-frontend:
+        container_name: elok-quiz-frontend
+        image: elok-quiz-frontend:latest
+        build:
+            context: ./quiz-frontend/
+            dockerfile: Dockerfile
+        ports:
+            - 4200:4200
+        expose:
+            - 4200
+        networks:
+            - quizFrontendNetwork
 
 networks:
     quizBackendNetwork:

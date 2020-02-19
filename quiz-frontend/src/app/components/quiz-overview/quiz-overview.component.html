@@ -1,0 +1,54 @@
+<div class="container-fluid my-3 text-center w-75">
+    <div class="card">
+        <div class="card-body">
+            <p class="lead">Teste dein Wissen über eLOK in verschiedenen Bereichen oder gleich für alle Themen!</p>
+            <hr class="my-4">
+            <form [formGroup]="quizForm">
+                <div class="row justify-content-center">
+                    <div class="card text-white bg-dark mb-3 mr-2">
+                        <div class="card-header">Für Alleskönner</div>
+                        <div class="card-body">
+                            <p>Alle Fragen aus allen Bereichen auf einmal!</p>
+                        </div>
+                    </div>
+                    <div class="card text-white bg-dark mb-3 mr-2">
+                        <div class="card-header">Für Detailverliebte</div>
+                        <div class="card-body">
+                            <p>Fragen aus einem bestimmten Bereich</p>
+                            <div class="form-group row">
+                                <label class="col-sm-4 col-form-label" for="domain">Bereich</label>
+                                <div class="col-sm-8">
+                                    <select class="form-control" id="domain" formControlName="filterDomain">
+                                        <option value="null" disabled>Bitte wählen...</option>
+                                        <option *ngFor="let domain of domains" [value]="domain.id">{{ domain.name }}</option>
+                                    </select>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="card text-white bg-dark mb-3">
+                        <div class="card-header">Dünnbrettbohrer und Besserwisser</div>
+                        <div class="card-body">
+                            <p>Auswahl eines bestimmten Schwierigkeitsgrades</p>
+                            <div class="form-group row">
+                                <label class="col-sm-4 col-form-label" for="difficulty">Schwierigkeit</label>
+                                <div class="col-sm-8">
+                                    <select class="form-control" id="difficulty" formControlName="filterDifficulty">
+                                        <option value="null" disabled>Bitte wählen...</option>
+                                        <option *ngFor="let difficulty of difficulties | enumToArray" [value]="difficulty.name">
+                                            {{ difficulty2Label[difficulty.name] }}</option>
+                                    </select>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="row justify-content-center">
+                    <div class="col-sm-6">
+                        <button class="btn btn-small btn-success btn-block" (click)="goToQuiz()">Zum Quiz</button>
+                    </div>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>

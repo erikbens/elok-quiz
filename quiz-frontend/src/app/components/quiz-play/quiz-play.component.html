@@ -1,0 +1,34 @@
+<div class="card">
+    <div class="card-header">eLOK - Quiz: Frage</div>
+    <div class="card-body">
+        <form [formGroup]="answersForm" (submit)="onSubmit()" class="row justify-content-center col-sm-9" novalidate>
+            <div class="col-sm-3 my-auto">
+                <div *ngIf="currentQuestion && currentQuestion.image != null" class="mr-2">
+                	<img class="img-thumbnail" max-width="150" max-height="200" src="{{'assets/questions/'+currentQuestion.image}}">
+                </div>
+            </div>
+            <div class="col-sm-8">
+                <div class="form-group row">
+                    <span class="col-sm-12 h5">{{ currentQuestion?.title }} </span>
+                </div>
+                <div class="form-group row">
+                    <div class="col-sm-12">{{ currentQuestion?.text }}</div>
+                </div>
+                <hr />
+                <div *ngIf="answersArray" class="checkbox-group" [class.is-invalid]="answersForm.controls['answers']?.invalid">
+                    <div formArrayName="answers" *ngFor="let control of answersArray.controls; let i = index" class="custom-control custom-checkbox">
+                        <div [formGroupName]="i" class="custom-control custom-checkbox">
+                            <input type="checkbox" class="custom-control-input" [formControl]="control" id="{{ currentQuestion.answers[i].id }}">
+                            <label class="custom-control-label" for="{{currentQuestion.answers[i].id}}">{{ currentQuestion.answers[i].text }}</label>
+                        </div>
+                    </div>
+                </div>
+                <div class="invalid-feedback" *ngIf="submitted && answersForm.controls['answers'].errors">
+                    Mindestens eine Antwort muss angegeben werden.
+                </div>
+                <hr />
+                <button class="btn btn-success" type="submit">Prüfen</button>
+            </div>
+        </form>
+    </div>
+</div>

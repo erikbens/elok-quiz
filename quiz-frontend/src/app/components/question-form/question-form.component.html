@@ -1,0 +1,94 @@
+<div class="card">
+	<div class="card-header">Frage bearbeiten</div>
+	<div class="card-body">
+		<form [formGroup]="questionForm" (submit)="onSubmit()">
+			<div class="form-group row">
+				<label class="col-sm-2 col-form-label" for="domain">Bereich</label>
+				<div class="col-sm-10" formGroupName="domain">
+					<select class="form-control" id="domain" formControlName="id">
+						<option value="null" [selected]="true" disabled>Bitte
+							wählen...</option>
+						<option *ngFor="let domain of domains" [ngValue]="domain.id">{{
+							domain.name }}</option>
+					</select>
+				</div>
+			</div>
+			<div class="form-group row">
+				<label class="col-sm-2 col-form-label" for="title">Titel</label>
+				<div class="col-sm-10">
+					<input class="form-control" id="title" type="text"
+						placeholder="Titel der Frage" required minlength="10"
+						formControlName="title"
+						[ngClass]="{'is-invalid': submitted && f['title'].errors}" />
+					<div class="invalid-feedback">
+						<div *ngIf="submitted && f['title'].errors?.required">Pflichtfeld!</div>
+						<div *ngIf="submitted && f['title'].errors?.minlength">Titel
+							muss mindestens 10 Zeichen lang sein.</div>
+					</div>
+				</div>
+			</div>
+			<div class="form-group row">
+				<label class="col-sm-2 col-form-label" for="text">Text</label>
+				<div class="col-sm-9">
+					<textarea class="form-control col-sm-12" id="text" type="text"
+						rows="3" required minlength="10"
+						placeholder="Vollständige Frage..." formControlName="text"
+						[ngClass]="{'is-invalid': submitted && f['text'].errors}"></textarea>
+					<div class="invalid-feedback">
+						<div *ngIf="submitted && f['text'].errors?.required">Pflichtfeld!</div>
+						<div *ngIf="submitted && f['text'].errors?.minlength">Frage
+							muss mindestens 10 Zeichen lang sein.</div>
+					</div>
+				</div>
+			</div>
+			<div class="form-group row">
+				<label class="col-sm-2 col-form-label" for="image">Bild</label>
+				<div class="col-sm-3">
+					<input class="form-control" id="image" type="text" formControlName="image" />
+				</div>
+				<div class="col-sm-3">
+					<input class="form-control" id="image_file" type="file"
+						(change)="onSelectFile($event)" accept="image/*" />
+				</div>
+				<div class="col-sm-4 img-fluid" *ngIf="imageUrl && imageUrl !== ''">
+					<img class="img-thumbnail" style="max-height:200px;max-width:200px;" [src]="imageUrl" alt="Kein Bild.">
+				</div>
+			</div>
+			<div class="form-group row">
+				<label class="col-sm-2 col-form-label" for="text">Schwierigkeit</label>
+				<div class="col-sm-10">
+					<select class="form-control" id="difficulty" required
+						formControlName="difficulty"
+						[ngClass]="{'is-invalid': submitted && f['difficulty'].errors}">
+						<option *ngFor="let difficulty of difficulties | enumToArray"
+							[ngValue]="difficulty.name">{{
+							difficulty2Label[difficulty.name] }}</option>
+					</select>
+					<div class="invalid-feedback">
+						<div *ngIf="submitted && f['difficulty'].errors?.required">Pflichtfeld!</div>
+					</div>
+				</div>
+			</div>
+			<div class="form-group row">
+				<label class="col-sm-2 col-form-label" for="createdBy">Erstellt
+					von</label>
+				<div class="col-sm-10">
+					<input class="form-control" id="createdBy" type="text"
+						formControlName="createdBy" />
+				</div>
+			</div>
+			<div class="form-group row">
+				<label class="col-sm-2 col-form-label" for="createdAt">Erstellt
+					am</label>
+				<div class="col-sm-10">
+					<input class="form-control" id="createdAt" type="text"
+						formControlName="createdAt" />
+				</div>
+			</div>
+			<button class="btn btn-success" type="submit">Speichern</button>
+			<button class="btn btn-secondary" type="button" (click)="goBack()">Abbrechen</button>
+		</form>
+		<hr>
+		<app-answer-list *ngIf="f['id'].value" [questionId]="f['id'].value"></app-answer-list>
+	</div>
+</div>

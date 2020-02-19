@@ -1,0 +1,55 @@
+<div class="container-fluid my-3 text-center w-75">
+	<div class="card">
+		<div class="card-body text-center">
+			<div class="row justify-content-center">
+				<div class="card text-white bg-dark mb-3 mr-2">
+					<div class="card-header">Quiz- Filter</div>
+					<div class="card-body">
+						<p>
+							<strong>Domain</strong>: {{ quizResult.domainId ?
+							quizResult.domainId : 'Alle' }}<br /> <strong>Schwierigkeit</strong>:
+							{{ quizResult.difficulty ? quizResult.difficulty : 'Alle' }}
+						</p>
+					</div>
+				</div>
+				<div class="card text-white bg-dark mb-3">
+					<div class="card-header">Dein Ergebnis</div>
+					<div class="card-body">
+						<p>
+							<strong>Richtige Antworten</strong>: {{ quizResult.correctAnswers }}
+							<br /> 
+							<strong>Falsche Antworten</strong>: {{ quizResult.incorrectAnswers }}
+						</p>
+					</div>
+				</div>
+			</div>
+			<hr />
+			<div *ngIf="highscore != null" class="row justify-content-center">
+				<table class="table table-bordered table-striped">
+					<thead>
+						<tr>
+							<th>Name</th>
+							<th>Richtige Antworten</th>
+							<th>Falsche Antworten</th>
+							<th>Datum</th>
+						</tr>
+					</thead>
+					<tbody>
+						<tr *ngFor="let entry of highscore.entries">
+							<td>{{entry?.name}}</td>
+							<td>{{entry?.correctAnswers}}</td>
+							<td>{{entry?.incorrectAnswers}}</td>
+							<td>{{entry?.createdAt | date: 'dd.MM.yyyy'}}</td>
+						</tr>
+					</tbody>
+				</table>
+			</div>
+			<div class="row justify-content-center">
+				<div class="col-sm-4">
+					<button class="btn btn-small btn-success btn-block"
+						routerLink="/quiz">Zum Quiz</button>
+				</div>
+			</div>
+		</div>
+	</div>
+</div>
