@@ -19,14 +19,18 @@ import org.springframework.web.servlet.i18n.AcceptHeaderLocaleResolver;
 
 import com.fasterxml.jackson.databind.Module;
 import com.fasterxml.jackson.datatype.hibernate5.Hibernate5Module;
+import com.loyaltypartner.elok.quiz.controller.exception.UserNotUniqueException;
 import com.loyaltypartner.elok.quiz.imports.XmlQuestionImporter;
 import com.loyaltypartner.elok.quiz.imports.converter.XmlToModelConverter;
 import com.loyaltypartner.elok.quiz.model.Answer;
 import com.loyaltypartner.elok.quiz.model.Domain;
+import com.loyaltypartner.elok.quiz.model.User;
+import com.loyaltypartner.elok.quiz.model.Role;
 import com.loyaltypartner.elok.quiz.model.dto.QuestionDTO;
 import com.loyaltypartner.elok.quiz.service.AnswerService;
 import com.loyaltypartner.elok.quiz.service.DomainService;
 import com.loyaltypartner.elok.quiz.service.QuestionService;
+import com.loyaltypartner.elok.quiz.service.UserService;
 import com.loyaltypartner.elok.quiz.storage.FileSystemStorageService;
 import com.loyaltypartner.elok.quiz.xml.List;
 
@@ -87,6 +91,18 @@ public class QuizApplication {
     public CommandLineRunner initStorage(FileSystemStorageService storageService) {
         return args -> {
             storageService.init();
+        };
+    }
+
+    @Bean
+    public CommandLineRunner initAdminUser(UserService userService) {
+        return args -> {
+            try {
+                User admin = new User("admin", "admin1#", Role.ADMIN);
+                userService.create(admin);
+            } catch (UserNotUniqueException e) {
+                //ignore
+            }
         };
     }
 
