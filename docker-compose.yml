@@ -17,7 +17,7 @@ services:
         container_name: elok-quiz
         depends_on:
             - database
-        image: elok-quiz:0.0.1
+        image: elok-quiz:0.0.2
         build: ./
         ports:
             - 8888:8888
