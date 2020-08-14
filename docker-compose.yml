@@ -2,14 +2,14 @@ version: "3"
 services:
     database:
         container_name: elok-quiz-db
-        image: mysql:latest
+        image: mysql:8.0.21
         environment:
             MYSQL_ROOT_PASSWORD: pwd!
             MYSQL_DATABASE: quiz
             MYSQL_USER: quiz-app
             MYSQL_PASSWORD: 9876
         ports:
-            - 3306:3306
+            - 3316:3306
         restart: always
         networks:
             - quizBackendNetwork
@@ -17,14 +17,10 @@ services:
         container_name: elok-quiz
         depends_on:
             - database
-        image: elok-quiz:latest
-        build:
-            context: ./
-            dockerfile: Dockerfile
+        image: elok-quiz:0.0.1
+        build: ./
         ports:
             - 8888:8888
-        expose:
-            - 8888
         restart: always
         networks:
             - quizBackendNetwork
@@ -33,20 +29,15 @@ services:
             - elok-pictures:/images/questions
     elok-quiz-frontend:
         container_name: elok-quiz-frontend
-        image: elok-quiz-frontend:latest
-        build:
-            context: ./quiz-frontend/
-            dockerfile: Dockerfile
+        image: elok-quiz-frontend:0.0.1
+        build: ./quiz-frontend/
         ports:
             - 4200:4200
-        expose:
-            - 4200
         networks:
             - quizFrontendNetwork
 
 networks:
     quizBackendNetwork:
-
     quizFrontendNetwork:
     
 volumes:
@@ -54,5 +45,5 @@ volumes:
       driver: local
       driver_opts:
         type: none
-        device: //d/temp
+        device: $HOME/volumes/quiz/elok-pictures
         o: bind
