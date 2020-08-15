@@ -14,10 +14,10 @@ import { QuizResultComponent } from './components/quiz-result/quiz-result.compon
 import { LoginFormComponent } from './components/login-form/login-form.component';
 
 const routes: Routes = [
-	{ path: 'admin/users', component: UserListComponent, canActivate: [ AuthGuard ]  },
 	{ path: 'admin/users/:userId', component: UserFormComponent, canActivate: [ AuthGuard ]  },
-	{ path: 'admin/domains', component: DomainListComponent, canActivate: [ AuthGuard ] },
+	{ path: 'admin/users', component: UserListComponent, canActivate: [ AuthGuard ]  },
 	{ path: 'admin/domains/:domainId', component: DomainFormComponent, canActivate: [ AuthGuard ]  },
+	{ path: 'admin/domains', component: DomainListComponent, canActivate: [ AuthGuard ] },
 	{ path: 'admin/questions/:questionId/answers/:answerId', component: AnswerFormComponent, canActivate: [ AuthGuard ]  },
 	{ path: 'admin/questions/:questionId', component: QuestionFormComponent, canActivate: [ AuthGuard ]  },
 	{ path: 'admin/questions', component: QuestionListComponent, canActivate: [ AuthGuard ]  },

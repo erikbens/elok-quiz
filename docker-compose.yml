@@ -54,5 +54,5 @@ volumes:
       driver: local
       driver_opts:
         type: none
-        device: //d/temp
+        device: /c/temp
         o: bind

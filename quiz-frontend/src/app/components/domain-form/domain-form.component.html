@@ -34,7 +34,7 @@
                                 <td>{{ getQuestionAt(i).createdBy }}</td>
                                 <td>{{ getQuestionAt(i).difficulty }}</td>
                                 <td>
-                                    <button class="btn btn-small btn-primary" routerLink="/questions/{{getQuestionAt(i).id}}">Bearbeiten</button>
+                                    <button class="btn btn-small btn-primary" routerLink="/admin/questions/{{getQuestionAt(i).id}}">Bearbeiten</button>
                                     <button class="btn btn-small btn-danger"
                                         (click)="removeQuestion(i)">Entfernen</button>
                                 </td>
