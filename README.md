@@ -68,9 +68,9 @@ Alle Services starten:
 ##### Manuelles Deployment auf DEV-Umgebung
 1. Docker Images exportieren:
 
-        docker save elok-quiz:0.0.1 elok-quiz-0-0-1.tar
-        docker save elok-quiz-frontend:0.0.1 elok-quiz-frontend-0-0-1.tar
-        docker save mysql:8.0.21 mysql-8-0-21.tar
+        docker save elok-quiz:0.0.2 -o elok-quiz-0-0-2.tar
+        docker save elok-quiz-frontend:0.0.1 -o elok-quiz-frontend-0-0-1.tar
+        docker save mysql:8.0.21 -o mysql-8-0-21.tar
         
 2. Die TARs auf den Zielhost kopieren (SSH oder S3 Buckets)
 
