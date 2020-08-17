@@ -57,6 +57,37 @@ In diesem Fall über Docker das Projekt bauen und im Docker Container starten. D
 - Das Backend basierend auf Spring
 - Das Frontend basierend auf Angular
 
+Ein Verzeichnis für das Volume erstellen:
+
+    mkdir -p $HOME/volumes/quiz/elok-pictures
+        
+Alle Services starten:
+
+    docker-compose up -d
+
+##### Manuelles Deployment auf DEV-Umgebung
+1. Docker Images exportieren:
+
+        docker save elok-quiz:0.0.1 elok-quiz-0-0-1.tar
+        docker save elok-quiz-frontend:0.0.1 elok-quiz-frontend-0-0-1.tar
+        docker save mysql:8.0.21 mysql-8-0-21.tar
+        
+2. Die TARs auf den Zielhost kopieren (SSH oder S3 Buckets)
+
+    Beispiel: Synchronisieren aus dem S3 Bucket 137456529413-elok-dev/dev2/quiz:
+
+        aws s3 sync s3://137456529413-elok-dev/dev2/quiz .
+        
+3. Docker Images importieren
+         
+         docker load -i elok-quiz-0-0-1.tar
+         docker load -i elok-quiz-frontend-0-0-1.tar
+         docker load -i mysql-8-0-21.tar
+         
+4.  Docker-compose ausführen
+
+        docker-compose up -d
+    
 ### Todos
 
  - [ ] Einstellen von Fragen / Antworten auch für Nutzer
