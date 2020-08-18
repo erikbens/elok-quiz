@@ -161,4 +161,10 @@ public class QuestionService {
         return storageService.loadAsResource(question.getImage());
     }
 
+    public void removeQuestionFromDomain(Long questionId, Long domainId) throws QuestionNotFoundException {
+        Question question = findByIdFetchDomain(questionId);
+        question.setDomain(null);
+        questionRepository.save(question);
+    }
+
 }

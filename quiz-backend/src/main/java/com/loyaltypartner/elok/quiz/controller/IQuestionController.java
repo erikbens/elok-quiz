@@ -51,7 +51,7 @@ public interface IQuestionController {
     @ApiResponses(value = { @ApiResponse(code = 200, message = "Ok"), @ApiResponse(code = 400, message = "Bad request"),
             @ApiResponse(code = 401, message = "Unauthorized"), @ApiResponse(code = 403, message = "Forbidden"),
             @ApiResponse(code = 404, message = "Not found") })
-    @RequestMapping(value = "/domain/{domainId}/questions", consumes = { MediaType.APPLICATION_JSON_VALUE }, produces = {
+    @RequestMapping(value = "/domains/{domainId}/questions", consumes = { MediaType.APPLICATION_JSON_VALUE }, produces = {
             MediaType.APPLICATION_JSON_VALUE }, method = RequestMethod.GET, headers = {})
     @ApiImplicitParams({ @ApiImplicitParam(name = "Content-Type", value = MediaType.APPLICATION_JSON_VALUE, paramType = "header") })
     ResponseEntity<List<Question>> findByDomainId(@ApiParam(value = "domainId", required = true) @PathVariable("domainId") Long domainId,
@@ -99,6 +99,17 @@ public interface IQuestionController {
             MediaType.APPLICATION_JSON_VALUE }, method = RequestMethod.DELETE, headers = {})
     @ApiImplicitParams({ @ApiImplicitParam(name = "Content-Type", value = MediaType.APPLICATION_JSON_VALUE, paramType = "header") })
     ResponseEntity<Void> deleteQuestion(@ApiParam(value = "questionId", required = true) @PathVariable Long questionId);
+
+    @ApiOperation(value = "Removes the link between questionId and domainId.", nickname = "removeQuestionFromDomain", authorizations = {
+            @Authorization(value = "bearer") }, tags = { "Questions" })
+    @ApiResponses(value = { @ApiResponse(code = 200, message = "Ok"), @ApiResponse(code = 400, message = "Bad request"),
+            @ApiResponse(code = 401, message = "Unauthorized"), @ApiResponse(code = 403, message = "Forbidden"),
+            @ApiResponse(code = 404, message = "Not found") })
+    @RequestMapping(value = "/domains/{domainId}/questions/{questionId}", consumes = {}, produces = {
+            MediaType.APPLICATION_JSON_VALUE }, method = RequestMethod.DELETE, headers = {})
+    @ApiImplicitParams({ @ApiImplicitParam(name = "Content-Type", value = MediaType.APPLICATION_JSON_VALUE, paramType = "header") })
+    ResponseEntity<Void> removeQuestionFromDomain(@ApiParam(value = "questionId", required = true) @PathVariable Long questionId,
+            @ApiParam(value = "domainId", required = true) @PathVariable Long domainId);
 
     @ApiOperation(value = "Checks the answers for the given questionId.", nickname = "checkAnswersForQuestionId", authorizations = {
             @Authorization(value = "bearer") }, tags = { "Questions" })

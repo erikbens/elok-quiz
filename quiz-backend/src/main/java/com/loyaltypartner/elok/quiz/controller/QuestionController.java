@@ -89,6 +89,16 @@ public class QuestionController implements IQuestionController {
             throw new ResponseStatusException(HttpStatus.NOT_FOUND, Translator.toLocale("error.question.notfound"), e);
         }
     }
+    
+    @Override
+    public ResponseEntity<Void> removeQuestionFromDomain(Long questionId, Long domainId) {
+        try {
+            questionService.removeQuestionFromDomain(questionId, domainId);
+            return new ResponseEntity<Void>(HttpStatus.OK);
+        } catch (QuestionNotFoundException e) {
+            throw new ResponseStatusException(HttpStatus.NOT_FOUND, Translator.toLocale("error.question.notfound"), e);
+        }
+    }
 
     @Override
     public ResponseEntity<Boolean> checkAnswersForQuestionId(Long questionId, List<Long> answerIds) {
