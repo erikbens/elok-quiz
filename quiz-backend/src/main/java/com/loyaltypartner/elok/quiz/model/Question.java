@@ -23,7 +23,7 @@ import lombok.Setter;
 @Getter
 @Setter
 @NoArgsConstructor
-@NamedQueries({ @NamedQuery(name = "Question.findByDomain", query = "SELECT q FROM Question q WHERE q.domain.id = :id"),
+@NamedQueries({
         @NamedQuery(name = "Question.findByTitleOrText", query = "SELECT q FROM Question q WHERE lower(q.title) LIKE lower(concat('%', :query, '%')) OR lower(q.text) LIKE lower(concat('%', :query, '%'))"),
         @NamedQuery(name = "Question.findByIdFetchDomain", query = "SELECT q FROM Question q JOIN FETCH q.domain WHERE q.id = :questionId"),
         @NamedQuery(name = "Question.findByIdFetchQuestions", query = "SELECT q FROM Question q LEFT JOIN FETCH q.answers WHERE q.id = :questionId") })
@@ -33,9 +33,9 @@ public class Question extends BaseEntity {
 
     @Column(length = 500)
     private String text;
-    
+
     private String image;
-    
+
     private String createdBy;
 
     @Enumerated
