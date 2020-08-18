@@ -10,7 +10,6 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.context.annotation.Bean;
 import org.springframework.core.io.Resource;
 import org.springframework.core.io.ResourceLoader;
-import org.springframework.data.domain.PageRequest;
 import org.springframework.web.filter.CommonsRequestLoggingFilter;
 import org.springframework.web.servlet.LocaleResolver;
 import org.springframework.web.servlet.config.annotation.CorsRegistry;
@@ -24,8 +23,8 @@ import com.loyaltypartner.elok.quiz.imports.XmlQuestionImporter;
 import com.loyaltypartner.elok.quiz.imports.converter.XmlToModelConverter;
 import com.loyaltypartner.elok.quiz.model.Answer;
 import com.loyaltypartner.elok.quiz.model.Domain;
-import com.loyaltypartner.elok.quiz.model.User;
 import com.loyaltypartner.elok.quiz.model.Role;
+import com.loyaltypartner.elok.quiz.model.User;
 import com.loyaltypartner.elok.quiz.model.dto.QuestionDTO;
 import com.loyaltypartner.elok.quiz.service.AnswerService;
 import com.loyaltypartner.elok.quiz.service.DomainService;
@@ -59,7 +58,7 @@ public class QuizApplication {
     public CommandLineRunner importFromXml(DomainService domainService, QuestionService questionService, AnswerService answerService,
             ResourceLoader resourceLoader, ModelMapper modelMapper) {
         return args -> {
-            if (questionService.findAll(PageRequest.of(1, 1)).isEmpty()) {
+            if (questionService.findAll().isEmpty()) {
                 Resource resource = resourceLoader.getResource("classpath:question_pool_all.xml");
                 List list = XmlQuestionImporter.readXml(resource.getInputStream());
                 if (list != null) {

@@ -7,10 +7,7 @@ import java.util.stream.Collectors;
 
 import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.beans.factory.annotation.Value;
 import org.springframework.core.io.Resource;
-import org.springframework.data.domain.PageRequest;
-import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 import org.springframework.web.multipart.MultipartFile;
 
@@ -40,14 +37,8 @@ public class QuestionService {
     @Autowired
     private StorageService storageService;
 
-    @Value("${view.pagination.pagesize}")
-    private Integer pageSize;
-
-    public List<Question> findAll(Pageable pageable) {
-        if (pageable == null) {
-            pageable = PageRequest.of(0, this.pageSize);
-        }
-        return questionRepository.findAll(pageable).getContent();
+    public List<Question> findAll() {
+        return questionRepository.findAll();
     }
 
     public Question findById(Long id) throws QuestionNotFoundException {
@@ -68,11 +59,8 @@ public class QuestionService {
         return optional.get();
     }
 
-    public List<Question> findQuestionsByDomain(Long domainId, Pageable pageable) {
-        if (pageable == null) {
-            pageable = PageRequest.of(0, this.pageSize);
-        }
-        return questionRepository.findByDomain(domainId, pageable);
+    public List<Question> findQuestionsByDomain(Long domainId) {
+        return questionRepository.findByDomain(domainId);
     }
 
     public List<Question> findQuestionsByTitleOrText(String query) {
