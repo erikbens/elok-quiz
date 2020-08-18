@@ -30,9 +30,9 @@ services:
     elok-quiz-frontend:
         container_name: elok-quiz-frontend
         image: elok-quiz-frontend:0.0.1
-        build: ./quiz-frontend/
+        build: ./quiz-frontend
         ports:
-            - 4200:4200
+            - 80:80
         networks:
             - quizFrontendNetwork
 

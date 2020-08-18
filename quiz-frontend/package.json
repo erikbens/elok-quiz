@@ -1,13 +1,13 @@
 {
-  "name": "quiz-client",
-  "version": "0.0.0",
+  "name": "elok-quiz",
+  "version": "0.0.1",
   "scripts": {
     "ng": "ng",
     "build": "ng build",
     "test": "ng test",
     "lint": "ng lint",
     "e2e": "ng e2e",
-    "start": "http-server ./dist/quiz-client/ -a 0.0.0.0 -p 4200 -c-1"
+    "start": "http-server ./dist/elok-quiz/ -a 0.0.0.0 -p 4200 -c-1"
   },
   "private": true,
   "dependencies": {
